@@ -9,3 +9,8 @@ Route::get('/', function () {
 Route::get('/test', function () {
     return view('test');
 });
+
+// Reset password
+Route::get('/reset-password', function() {
+    return view('reset_password');
+});
