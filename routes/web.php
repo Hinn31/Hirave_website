@@ -11,6 +11,9 @@ Route::get('/test', function () {
 });
 
 // Reset password
-Route::get('/reset-password', function() {
-    return view('reset_password');
+Route::get('/forgot-password', function() {
+    return view('forgot_password');
+});
+Route::get('/verification', function() {
+    return view('verification');
 });
