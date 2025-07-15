@@ -1,4 +1,3 @@
-
 @extends('layouts.app')
 
 @section('title', 'Verification')
@@ -27,22 +26,6 @@
             </p>
         </form>
 
-        <script>
-            const form = document.querySelector('.verification__form');
-            form.addEventListener('submit', function() {
-                const otp = digit1.value + digit2.value + digit3.value + digit4.value;
-                document.getElementById('otp').value = otp;
-            });
-
-            let seconds = 60;
-            const countdown = document.getElementById('verification__countdown');
-            setInterval(() => {
-                seconds--;
-                let m = Math.floor(seconds / 60);
-                let s = seconds % 60;
-                countdown.textContent = `${m.toString().padStart(2,'0')}:${s.toString().padStart(2,'0')}`;
-                if (seconds <= 0) countdown.textContent = 'Expired!';
-            }, 1000);
-        </script>
+        <script src="{{ asset('js/reset_password.js') }}"></script>
     </div>
 @endsection

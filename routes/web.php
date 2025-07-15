@@ -10,6 +10,15 @@ Route::get('/', function () {
 Route::get('/test', function () {
     return view('test');
 });
+
+Route::get('/register', function () {
+    return view('auth.register');
+})->name('register');
+
+Route::get('/login', function () {
+    return view('auth.login');
+})->name('login');
+
 //Reset_password
 Route::get('/forgot-password', function () {
     return view('auth.forgot_password');
@@ -23,6 +32,7 @@ Route::get('/verify-otp', [ForgotPasswordController::class, 'showVerifyForm'])
 
 Route::post('/verify-otp', [ForgotPasswordController::class, 'verifyOtp'])
     ->name('forgot.password.verify');
+
 Route::get('/resend-otp', [ForgotPasswordController::class, 'resendOtp'])->name('forgot.password.resend');
 
 Route::get('/reset-password', [ForgotPasswordController::class, 'showResetForm'])
