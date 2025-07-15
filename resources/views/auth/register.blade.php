@@ -7,9 +7,7 @@
 @section('content')
 <h2 class="auth-title">Register</h2>
 
-<form method="POST" action="{{ route('register') }}">
-    @csrf
-
+<form id="registerForm">
     <div class="auth-group">
         <label for="name">Username</label>
         <input type="text" name="name" id="name" class="auth-input" placeholder="Your name" required>
@@ -36,4 +34,53 @@
         Already have an account? <a href="{{ route('login') }}">Login here</a>
     </p>
 </form>
+
+{{-- JavaScript xử lý fetch --}}
+<script>
+document.getElementById('registerForm').addEventListener('submit', async function(e) {
+    e.preventDefault(); // Ngăn reload
+
+    const form = e.target;
+
+    const data = {
+        name: form.name.value,
+        email: form.email.value,
+        password: form.password.value,
+        password_confirmation: form.password_confirmation.value
+    };
+
+    try {
+        const response = await fetch('/api/register', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify(data)
+        });
+
+        const result = await response.json();
+
+        if (response.ok) {
+            alert("🎉 Đăng ký thành công!");
+            console.log(result);
+            // Chuyển về login sau khi đăng ký
+            window.location.href = "/login";
+        } else {
+            if (result.errors) {
+                let message = '';
+                for (const [field, msgs] of Object.entries(result.errors)) {
+                    message += `- ${field}: ${msgs.join(', ')}\n`;
+                }
+                alert("❌ Lỗi:\n" + message);
+            } else {
+                alert("❌ Lỗi: " + result.message);
+            }
+        }
+    } catch (err) {
+        alert("⚠️ Lỗi kết nối tới máy chủ.");
+        console.error(err);
+    }
+});
+</script>
 @endsection
