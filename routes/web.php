@@ -1,7 +1,9 @@
 <?php
 
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\ForgotPasswordController;
+use App\Http\Controllers\Auth\EmailVerificationController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -44,3 +46,21 @@ Route::post('/reset-password', [ForgotPasswordController::class, 'resetPassword'
 Route::get('/success', function () {
     return view('auth.success');
 })->name('forgot.password.success');
+
+//verify email
+Route::get('/email/verify', [EmailVerificationController::class, 'notice'])
+    ->middleware('auth')->name('verification.notice');
+
+Route::get('/email/verify/{id}/{hash}', [EmailVerificationController::class, 'verify'])
+    ->middleware(['auth', 'signed'])->name('verification.verify');
+
+Route::post('/email/verification-notification', [EmailVerificationController::class, 'send'])
+    ->middleware(['auth', 'throttle:6,1'])->name('verification.send');
+
+Route::get('/login-test', function () {
+    Auth::loginUsingId(1);
+    return 'Logged in';
+});
+Route::get('/dashboard', function () {
+    return 'Welcome, your email is verified!';
+});
