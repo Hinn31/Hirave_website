@@ -8,15 +8,15 @@
 <div class="login">
   <h2 class="auth-title">Login</h2>
 
-  <form id="login-form">
+<form id="login-form" autocomplete="off">
     <div class="auth-group">
         <label for="email">Email</label>
-        <input type="email" name="email" id="email" class="auth-input" placeholder="Your email" required>
+        <input type="email" name="email" id="email" class="auth-input" placeholder="Your email"  required autocomplete="off">
     </div>
 
     <div class="auth-group">
         <label for="password">Password</label>
-        <input type="password" name="password" id="password" class="auth-input" placeholder="Enter password" required>
+        <input type="password" name="password" id="password" class="auth-input" placeholder="Enter password" required autocomplete="off">
     </div>
 
     <button type="submit" class="auth-button">Login</button>
@@ -33,7 +33,9 @@
 
 
 <script>
-document.getElementById('login-form').addEventListener('submit', async function (e) {
+const form = document.getElementById('login-form');
+
+form.addEventListener('submit', async function (e) {
     e.preventDefault(); // Ngăn không cho form reload trang
 
     const email = document.getElementById('email').value.trim();
@@ -57,6 +59,8 @@ document.getElementById('login-form').addEventListener('submit', async function 
         if (response.ok) {
             messageBox.style.color = 'green';
             messageBox.textContent = data.message || 'Login successful!';
+            
+            form.reset(); // ✅ Đã sửa đúng
             window.location.href = '/test'; // Chuyển trang sau khi login
         } else {
             messageBox.style.color = 'red';
@@ -70,4 +74,5 @@ document.getElementById('login-form').addEventListener('submit', async function 
     }
 });
 </script>
+
 @endsection
