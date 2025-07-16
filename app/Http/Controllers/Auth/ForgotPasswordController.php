@@ -32,7 +32,7 @@ class ForgotPasswordController extends Controller
 
         Session::put('reset_email', $request->email);
 
-        return redirect()->route('forgot.password.verify.form')
+        return redirect()->route('verify.form')
                          ->with('message', 'OTP has been sent!');
     }
 
@@ -71,7 +71,7 @@ class ForgotPasswordController extends Controller
 
         DB::table('password_reset_tokens')->where('email', $request->email)->delete();
 
-        return redirect()->route('forgot.password.reset.form');
+        return redirect()->route('reset.form');
     }
     public function resendOtp()
     {
@@ -110,9 +110,16 @@ class ForgotPasswordController extends Controller
             return redirect()->route('forgot.password.form')->withErrors(['email' => 'No email found.']);
         }
 
-        $request->validate([
+        $request->validate(
+            [
             'password' => 'required|confirmed|min:8',
-        ]);
+            ],
+            [
+                'password.required' => 'Password is required.',
+                'password.confirmed' => 'Password and confirm password should be same.',
+                'password.min' => 'Password should be at least 8 characters.',
+            ]
+    );
 
         $user = User::where('email', $email)->first();
         if (!$user) {

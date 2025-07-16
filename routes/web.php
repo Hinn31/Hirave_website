@@ -27,40 +27,25 @@ Route::get('/forgot-password', function () {
 })->name('forgot.password.form');
 
 Route::post('/forgot-password', [ForgotPasswordController::class, 'sendOtp'])
-    ->name('forgot.password.send');
+    ->name('sendOtp');
 
 Route::get('/verify-otp', [ForgotPasswordController::class, 'showVerifyForm'])
-    ->name('forgot.password.verify.form');
+    ->name('verify.form');
 
 Route::post('/verify-otp', [ForgotPasswordController::class, 'verifyOtp'])
-    ->name('forgot.password.verify');
+    ->name('verify-otp');
 
-Route::get('/resend-otp', [ForgotPasswordController::class, 'resendOtp'])->name('forgot.password.resend');
+Route::get('/resend-otp', [ForgotPasswordController::class, 'resendOtp'])
+    ->name('resend-otp');
 
 Route::get('/reset-password', [ForgotPasswordController::class, 'showResetForm'])
-    ->name('forgot.password.reset.form');
+    ->name('reset.form');
 
 Route::post('/reset-password', [ForgotPasswordController::class, 'resetPassword'])
-    ->name('forgot.password.reset');
+    ->name('reset-password');
 
 Route::get('/success', function () {
     return view('auth.success');
 })->name('forgot.password.success');
 
-//verify email
-Route::get('/email/verify', [EmailVerificationController::class, 'notice'])
-    ->middleware('auth')->name('verification.notice');
 
-Route::get('/email/verify/{id}/{hash}', [EmailVerificationController::class, 'verify'])
-    ->middleware(['auth', 'signed'])->name('verification.verify');
-
-Route::post('/email/verification-notification', [EmailVerificationController::class, 'send'])
-    ->middleware(['auth', 'throttle:6,1'])->name('verification.send');
-
-Route::get('/login-test', function () {
-    Auth::loginUsingId(1);
-    return 'Logged in';
-});
-Route::get('/dashboard', function () {
-    return 'Welcome, your email is verified!';
-});

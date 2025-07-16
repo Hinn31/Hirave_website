@@ -4,7 +4,7 @@
 
 @section('content')
 <div class="forgot-password">
-    <form action="{{ route('forgot.password.send') }}" method="POST" class="forgot-password__form">
+    <form action="{{ route('sendOtp') }}" method="POST" class="forgot-password__form">
         @csrf
         <h3 class="forgot-password__title">Forgot password</h3>
         <p class="forgot-password__description">Enter your email for the verification proccess,we will send 4 digits code to your email.</p>
