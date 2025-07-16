@@ -13,10 +13,14 @@ return new class extends Migration
     {
         // Users
         Schema::create('users', function (Blueprint $table) {
-            $table->id();
-            $table->string('password', 100);
-            $table->string('name');
+            $table->id(); // dùng id mặc định (khuyên dùng)
+            $table->string('fullname', 50);
+            $table->date('date_of_birth')->nullable();
+            $table->string('phone', 10)->nullable();
             $table->string('email', 100)->unique();
+            $table->string('username', 50)->unique();
+            $table->string('password', 100);
+            $table->string('avatar', 135)->nullable();
             $table->enum('role', ['admin', 'customer'])->default('customer');
             $table->timestamps();
         });
@@ -98,7 +102,7 @@ return new class extends Migration
         // Reviews
         Schema::create('reviews', function (Blueprint $table) {
             $table->id();
-            $table->integer('rating'); // kiểm tra giới hạn nên để trong validation model
+            $table->integer('rating');
             $table->text('comment')->nullable();
             $table->dateTime('reviewDate')->useCurrent();
             $table->foreignId('userID')->constrained('users')->onDelete('cascade');
@@ -123,5 +127,3 @@ return new class extends Migration
         Schema::dropIfExists('users');
     }
 };
-
-

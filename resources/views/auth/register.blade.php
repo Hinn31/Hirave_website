@@ -9,13 +9,28 @@
 
 <form id="registerForm">
     <div class="auth-group">
-        <label for="name">Username</label>
-        <input type="text" name="name" id="name" class="auth-input" placeholder="Your name" required>
+        <label for="fullname">Full Name</label>
+        <input type="text" name="fullname" id="fullname" class="auth-input" placeholder="Your full name" required>
+    </div>
+
+    <div class="auth-group">
+        <label for="username">Username</label>
+        <input type="text" name="username" id="username" class="auth-input" placeholder="Choose a username" required>
     </div>
 
     <div class="auth-group">
         <label for="email">Email</label>
         <input type="email" name="email" id="email" class="auth-input" placeholder="Your email" required>
+    </div>
+
+    <div class="auth-group">
+        <label for="phone">Phone</label>
+        <input type="text" name="phone" id="phone" class="auth-input" placeholder="Phone number (optional)">
+    </div>
+
+    <div class="auth-group">
+        <label for="date_of_birth">Date of Birth</label>
+        <input type="date" name="date_of_birth" id="date_of_birth" class="auth-input">
     </div>
 
     <div class="auth-group">
@@ -38,13 +53,16 @@
 {{-- JavaScript xử lý fetch --}}
 <script>
 document.getElementById('registerForm').addEventListener('submit', async function(e) {
-    e.preventDefault(); // Ngăn reload
+    e.preventDefault();
 
     const form = e.target;
 
     const data = {
-        name: form.name.value,
+        fullname: form.fullname.value,
+        username: form.username.value,
         email: form.email.value,
+        phone: form.phone.value,
+        date_of_birth: form.date_of_birth.value,
         password: form.password.value,
         password_confirmation: form.password_confirmation.value
     };
@@ -63,8 +81,6 @@ document.getElementById('registerForm').addEventListener('submit', async functio
 
         if (response.ok) {
             alert("🎉 Đăng ký thành công!");
-            console.log(result);
-            // Chuyển về login sau khi đăng ký
             window.location.href = "/login";
         } else {
             if (result.errors) {

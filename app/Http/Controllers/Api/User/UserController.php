@@ -10,20 +10,25 @@ use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
 {
-    // GET /api/users - Lấy danh sách tất cả user
+    // GET /api/users
     public function index()
     {
         $users = User::all();
         return response()->json($users);
     }
 
-    // POST /api/users - Tạo user mới
+    // POST /api/users
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'name'     => 'required|string|max:255',
-            'email'    => 'required|email|unique:users',
-            'password' => 'required|string|min:6',
+            'fullname'       => 'required|string|max:50',
+            'date_of_birth'  => 'nullable|date',
+            'phone'          => 'nullable|string|size:10',
+            'email'          => 'required|email|unique:users',
+            'username'       => 'required|string|max:50|unique:users',
+            'password'       => 'required|string|min:6',
+            'avatar'         => 'nullable|string|max:135',
+            'role'           => 'in:admin,customer'
         ]);
 
         if ($validator->fails()) {
@@ -34,9 +39,14 @@ class UserController extends Controller
         }
 
         $user = User::create([
-            'name'     => $request->name,
-            'email'    => $request->email,
-            'password' => Hash::make($request->password),
+            'fullname'      => $request->fullname,
+            'date_of_birth' => $request->date_of_birth,
+            'phone'         => $request->phone,
+            'email'         => $request->email,
+            'username'      => $request->username,
+            'password'      => Hash::make($request->password),
+            'avatar'        => $request->avatar,
+            'role'          => $request->role ?? 'customer',
         ]);
 
         return response()->json([
@@ -45,7 +55,7 @@ class UserController extends Controller
         ], 201);
     }
 
-    // GET /api/users/{id} - Xem chi tiết user
+    // GET /api/users/{id}
     public function show($id)
     {
         $user = User::find($id);
@@ -57,7 +67,7 @@ class UserController extends Controller
         return response()->json($user);
     }
 
-    // PUT/PATCH /api/users/{id} - Cập nhật user
+    // PUT/PATCH /api/users/{id}
     public function update(Request $request, $id)
     {
         $user = User::find($id);
@@ -67,9 +77,14 @@ class UserController extends Controller
         }
 
         $validator = Validator::make($request->all(), [
-            'name'     => 'nullable|string|max:255',
-            'email'    => 'nullable|email|unique:users,email,' . $id,
-            'password' => 'nullable|string|min:6',
+            'fullname'       => 'nullable|string|max:50',
+            'date_of_birth'  => 'nullable|date',
+            'phone'          => 'nullable|string|size:10',
+            'email'          => 'nullable|email|unique:users,email,' . $id,
+            'username'       => 'nullable|string|max:50|unique:users,username,' . $id,
+            'password'       => 'nullable|string|min:6',
+            'avatar'         => 'nullable|string|max:135',
+            'role'           => 'nullable|in:admin,customer'
         ]);
 
         if ($validator->fails()) {
@@ -79,14 +94,16 @@ class UserController extends Controller
             ], 422);
         }
 
-        // Cập nhật các trường
-        if ($request->has('name')) {
-            $user->name = $request->name;
-        }
-
-        if ($request->has('email')) {
-            $user->email = $request->email;
-        }
+        // Cập nhật dữ liệu
+        $user->fill([
+            'fullname'      => $request->fullname ?? $user->fullname,
+            'date_of_birth' => $request->date_of_birth ?? $user->date_of_birth,
+            'phone'         => $request->phone ?? $user->phone,
+            'email'         => $request->email ?? $user->email,
+            'username'      => $request->username ?? $user->username,
+            'avatar'        => $request->avatar ?? $user->avatar,
+            'role'          => $request->role ?? $user->role,
+        ]);
 
         if ($request->filled('password')) {
             $user->password = Hash::make($request->password);
@@ -100,7 +117,7 @@ class UserController extends Controller
         ]);
     }
 
-    // DELETE /api/users/{id} - Xoá user
+    // DELETE /api/users/{id}
     public function destroy($id)
     {
         $user = User::find($id);

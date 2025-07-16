@@ -37,10 +37,10 @@ class AuthController extends Controller
             'message' => 'Login successful',
             'token'   => $token,
             'user'    => [
-                'id'    => $user->id,
-                'name'  => $user->name,
-                'email' => $user->email,
-                'role'  => $user->role,
+                'id'       => $user->id,
+                'fullname' => $user->fullname,
+                'email'    => $user->email,
+                'role'     => $user->role,
             ]
         ]);
     }
@@ -49,9 +49,12 @@ class AuthController extends Controller
     public function register(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'name'     => 'required|string|max:50',
-            'email'    => 'required|email|unique:users',
-            'password' => 'required|string|min:6'
+            'fullname'       => 'required|string|max:50',
+            'username'       => 'required|string|max:50|unique:users',
+            'email'          => 'required|email|unique:users',
+            'phone'          => 'nullable|string|max:10',
+            'date_of_birth'  => 'nullable|date',
+            'password'       => 'required|string|min:6|confirmed',
         ]);
 
         if ($validator->fails()) {
@@ -62,9 +65,13 @@ class AuthController extends Controller
         }
 
         $user = User::create([
-            'name'     => $request->name,
-            'email'    => $request->email,
-            'password' => Hash::make($request->password),
+            'fullname'      => $request->fullname,
+            'username'      => $request->username,
+            'email'         => $request->email,
+            'phone'         => $request->phone,
+            'date_of_birth' => $request->date_of_birth,
+            'password'      => Hash::make($request->password),
+            'role'          => 'customer',
         ]);
 
         return response()->json([

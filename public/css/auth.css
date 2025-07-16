@@ -54,6 +54,8 @@ body {
   height: 100%;
   padding: 40px;
   box-sizing: border-box;
+  overflow-y: auto;       /* ✅ Cho phép cuộn khi nội dung dài */
+  max-height: 100%;       /* ✅ Không phá vỡ bố cục */
 }
 
 @media (min-width: 768px) {
@@ -72,17 +74,17 @@ body {
   font-size: 28px;
   text-align: center;
   font-weight: bold;
-  margin-bottom: 7px;
+  margin-bottom: 2px;
 }
 
 /* Form Elements */
 .auth-group {
-  margin-bottom: 18px;
+  margin-bottom: 10px;
 }
 
 .auth-input {
   width: 100%;
-  padding: 12px 15px;
+  padding: 10px 15px;
   font-size: 14px;
   border: 1px solid #ccc;
   border-radius: 8px;
@@ -124,6 +126,7 @@ body {
   text-decoration: none;
   font-weight: 500;
 }
-.login{
+
+.login {
   margin-top: 60px;
 }
