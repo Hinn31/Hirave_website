@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\RegisterController;
@@ -8,6 +9,7 @@ use App\Http\Controllers\Auth\RegisterController;
 // Route::get('/register', function () {
 //     return view('auth.register');
 // });
+use App\Http\Controllers\Auth\EmailVerificationController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -31,21 +33,22 @@ Route::get('/forgot-password', function () {
 })->name('forgot.password.form');
 
 Route::post('/forgot-password', [ForgotPasswordController::class, 'sendOtp'])
-    ->name('forgot.password.send');
+    ->name('sendOtp');
 
 Route::get('/verify-otp', [ForgotPasswordController::class, 'showVerifyForm'])
-    ->name('forgot.password.verify.form');
+    ->name('verify.form');
 
 Route::post('/verify-otp', [ForgotPasswordController::class, 'verifyOtp'])
-    ->name('forgot.password.verify');
+    ->name('verify-otp');
 
-Route::get('/resend-otp', [ForgotPasswordController::class, 'resendOtp'])->name('forgot.password.resend');
+Route::get('/resend-otp', [ForgotPasswordController::class, 'resendOtp'])
+    ->name('resend-otp');
 
 Route::get('/reset-password', [ForgotPasswordController::class, 'showResetForm'])
-    ->name('forgot.password.reset.form');
+    ->name('reset.form');
 
 Route::post('/reset-password', [ForgotPasswordController::class, 'resetPassword'])
-    ->name('forgot.password.reset');
+    ->name('reset-password');
 
 Route::get('/success', function () {
     return view('auth.success');
@@ -54,4 +57,6 @@ Route::get('/success', function () {
 Route::get('/dashboard', function () {
     return view('test');
 })->name('dashboard');
+
+
 

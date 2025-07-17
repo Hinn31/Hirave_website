@@ -4,7 +4,7 @@
 
 @section('content')
     <div class="verification">
-        <form action="{{ route('forgot.password.verify') }}" method="POST" class="verification__form">
+        <form action="{{ route('verify-otp') }}" method="POST" class="verification__form">
             @csrf
             <h3 class="verification__title">Verification</h3>
             <p class="verification__description">Enter your 4 digits code that you received on your email.</p>
@@ -22,7 +22,7 @@
             <p id="verification__countdown" class="verification__countdown">01:00</p>
             <button type="submit" class="verification__button">CONTINUE</button>
             <p class="verification__resend">
-                If you didn’t receive a code! <a href="{{ route('forgot.password.resend') }}" id="resend-link">Resend</a>
+                If you didn’t receive a code! <a href="{{ route('resend-otp') }}" id="resend-link">Resend</a>
             </p>
         </form>
 

@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Session;
 
 class ForgotPasswordController extends Controller
 {
+    //POST Send OTP
     public function sendOtp(Request $request)
     {
         $request->validate([
@@ -32,10 +33,11 @@ class ForgotPasswordController extends Controller
 
         Session::put('reset_email', $request->email);
 
-        return redirect()->route('forgot.password.verify.form')
+        return redirect()->route('verify.form')
                          ->with('message', 'OTP has been sent!');
     }
 
+    //Get Verify OTP
     public function showVerifyForm()
     {
         $email = Session::get('reset_email');
@@ -49,6 +51,7 @@ class ForgotPasswordController extends Controller
         return view('auth.verification', compact('email', 'createdAt'));
     }
 
+    //POST Verify OTP
     public function verifyOtp(Request $request)
     {
         $request->validate([
@@ -71,8 +74,10 @@ class ForgotPasswordController extends Controller
 
         DB::table('password_reset_tokens')->where('email', $request->email)->delete();
 
-        return redirect()->route('forgot.password.reset.form');
+        return redirect()->route('reset.form');
     }
+
+    //GET and POST OTP
     public function resendOtp()
     {
         $email = Session::get('reset_email');
@@ -94,6 +99,7 @@ class ForgotPasswordController extends Controller
         return back()->with('message', 'A new OTP has been sent!');
     }
 
+    //GET Reset Password
     public function showResetForm()
     {
         $email = Session::get('reset_email');
@@ -103,6 +109,8 @@ class ForgotPasswordController extends Controller
 
         return view('auth.reset_password', compact('email'));
     }
+
+    //POST Reset Password
    public function resetPassword(Request $request)
     {
         $email = Session::get('reset_email');
@@ -110,9 +118,16 @@ class ForgotPasswordController extends Controller
             return redirect()->route('forgot.password.form')->withErrors(['email' => 'No email found.']);
         }
 
-        $request->validate([
+        $request->validate(
+            [
             'password' => 'required|confirmed|min:8',
-        ]);
+            ],
+            [
+                'password.required' => 'Password is required.',
+                'password.confirmed' => 'Password and confirm password should be same.',
+                'password.min' => 'Password should be at least 8 characters.',
+            ]
+    );
 
         $user = User::where('email', $email)->first();
         if (!$user) {

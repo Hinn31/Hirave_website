@@ -30,3 +30,36 @@ function togglePassword(inputId, iconElement) {
         icon.classList.add("fa-eye");
     }
 }
+
+window.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('reset-password-form');
+    if(!form) {
+        console.error('Form not found!');
+        return;
+    }
+    form.addEventListener('submit', function (e) {
+    const password = document.getElementById('password').value.trim();
+    const confirmPassword = document.getElementById('confirm-password').value.trim();
+    let hasError = false;
+
+    document.getElementById('password-error').style.display = 'none';
+    document.getElementById('confirm-password-error').style.display = 'none';
+
+    if (password.length < 8) {
+        document.getElementById('password-error').innerText = 'Password must be at least 8 characters.';
+        document.getElementById('password-error').style.display = 'block';
+        hasError = true;
+    }
+
+    if (password !== confirmPassword) {
+        document.getElementById('confirm-password-error').innerText = 'Passwords do not match.';
+        document.getElementById('confirm-password-error').style.display = 'block';
+        hasError = true;
+    }
+
+    if (hasError) {
+        e.preventDefault();
+    }
+});
+});
+
