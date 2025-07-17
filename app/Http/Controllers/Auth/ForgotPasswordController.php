@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Session;
 
 class ForgotPasswordController extends Controller
 {
+    //POST Send OTP
     public function sendOtp(Request $request)
     {
         $request->validate([
@@ -36,6 +37,7 @@ class ForgotPasswordController extends Controller
                          ->with('message', 'OTP has been sent!');
     }
 
+    //Get Verify OTP
     public function showVerifyForm()
     {
         $email = Session::get('reset_email');
@@ -49,6 +51,7 @@ class ForgotPasswordController extends Controller
         return view('auth.verification', compact('email', 'createdAt'));
     }
 
+    //POST Verify OTP
     public function verifyOtp(Request $request)
     {
         $request->validate([
@@ -73,6 +76,8 @@ class ForgotPasswordController extends Controller
 
         return redirect()->route('reset.form');
     }
+
+    //GET and POST OTP
     public function resendOtp()
     {
         $email = Session::get('reset_email');
@@ -94,6 +99,7 @@ class ForgotPasswordController extends Controller
         return back()->with('message', 'A new OTP has been sent!');
     }
 
+    //GET Reset Password
     public function showResetForm()
     {
         $email = Session::get('reset_email');
@@ -103,6 +109,8 @@ class ForgotPasswordController extends Controller
 
         return view('auth.reset_password', compact('email'));
     }
+
+    //POST Reset Password
    public function resetPassword(Request $request)
     {
         $email = Session::get('reset_email');

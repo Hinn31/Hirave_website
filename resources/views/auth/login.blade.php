@@ -6,26 +6,68 @@
 
 @section('content')
 <div class="login">
-<h2 class="auth-title">Login</h2>
+  <h2 class="auth-title">Login</h2>
 
-  <form method="POST" action="{{ route('login') }}">
-    @csrf
-
-     <div class="auth-group">
+  <form id="login-form">
+    <div class="auth-group">
         <label for="email">Email</label>
         <input type="email" name="email" id="email" class="auth-input" placeholder="Your email" required>
     </div>
 
-     <div class="auth-group">
+    <div class="auth-group">
         <label for="password">Password</label>
         <input type="password" name="password" id="password" class="auth-input" placeholder="Enter password" required>
     </div>
 
     <button type="submit" class="auth-button">Login</button>
 
-       <p class="auth-bottom-text">
-        Don't have an account? <a href="{{ route('login') }}">Register here</a>
+    <p class="auth-bottom-text">
+        Don't have an account? <a href="{{ route('register') }}">Register here</a>
     </p>
+    <p class="auth-bottom-text">
+        <a href="#">Fogot Password?</a>
+    </p>
+    <p id="login-message" style="margin-top: 10px; color: red;"></p>
   </form>
 </div>
+
+
+<script>
+document.getElementById('login-form').addEventListener('submit', async function (e) {
+    e.preventDefault(); // Ngăn không cho form reload trang
+
+    const email = document.getElementById('email').value.trim();
+    const password = document.getElementById('password').value.trim();
+    const messageBox = document.getElementById('login-message');
+
+    messageBox.textContent = ''; // Xóa thông báo cũ
+
+    try {
+        const response = await fetch('http://127.0.0.1:8000/api/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify({ email, password })
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+            messageBox.style.color = 'green';
+            messageBox.textContent = data.message || 'Login successful!';
+            window.location.href = '/test'; // Chuyển trang sau khi login
+        } else {
+            messageBox.style.color = 'red';
+            messageBox.textContent = data.message || 'Login failed!';
+        }
+
+    } catch (error) {
+        console.error('Lỗi kết nối API:', error);
+        messageBox.style.color = 'red';
+        messageBox.textContent = 'Lỗi kết nối đến máy chủ.';
+    }
+});
+</script>
 @endsection

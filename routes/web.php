@@ -3,6 +3,12 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\ForgotPasswordController;
+use App\Http\Controllers\Auth\RegisterController;
+
+
+// Route::get('/register', function () {
+//     return view('auth.register');
+// });
 use App\Http\Controllers\Auth\EmailVerificationController;
 
 Route::get('/', function () {
@@ -47,5 +53,10 @@ Route::post('/reset-password', [ForgotPasswordController::class, 'resetPassword'
 Route::get('/success', function () {
     return view('auth.success');
 })->name('forgot.password.success');
+
+Route::get('/dashboard', function () {
+    return view('test');
+})->name('dashboard');
+
 
 
