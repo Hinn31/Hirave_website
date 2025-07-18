@@ -16,21 +16,6 @@ const form = document.querySelector('.verification__form');
     }, 1000);
 
 // New password
-function togglePassword(inputId, iconElement) {
-    const input = document.getElementById(inputId);
-    const icon = iconElement.querySelector('i');
-
-    if (input.type === "password") {
-        input.type = "text";
-        icon.classList.remove("fa-eye");
-        icon.classList.add("fa-eye-slash");
-    } else {
-        input.type = "password";
-        icon.classList.remove("fa-eye-slash");
-        icon.classList.add("fa-eye");
-    }
-}
-
 window.addEventListener('DOMContentLoaded', function() {
     const form = document.getElementById('reset-password-form');
     if(!form) {

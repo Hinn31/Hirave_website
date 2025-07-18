@@ -12,7 +12,7 @@
         <h2 class="reset-success__title">Successfully</h2>
         <p class="reset-success__message">Your password has been reset successfully</p>
 
-        <a href="/" class="reset-success__button">CONTINUE</a>
+        <a href="{{route ('login')}}" class="reset-success__button">CONTINUE</a>
     </div>
 </div>
 @endsection
