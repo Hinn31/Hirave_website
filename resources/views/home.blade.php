@@ -16,6 +16,8 @@
         <h2>Trang chủ</h2>
         <p>Đây là nội dung trang chủ của bạn.</p>
     </main>
+        @include('components.footer')
+
 
 </body>
 </html>
