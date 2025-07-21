@@ -61,6 +61,7 @@ Route::get('/dashboard', function () {
 Route::get('/Products', function () {
     return view('home');
 })->name('home');
+
 //Filter products
 Route::get('/filter-products', function() {
     return view('components.filter-bar');
