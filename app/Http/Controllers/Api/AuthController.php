@@ -7,6 +7,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\WelcomeMail;
+
 
 class AuthController extends Controller
 {
@@ -73,6 +76,9 @@ class AuthController extends Controller
             'password'      => Hash::make($request->password),
             'role'          => 'customer',
         ]);
+
+        // Send Mail successfully
+        Mail::to($user->email)->send(new WelcomeMail($user));
 
         return response()->json([
             'message' => 'User registered successfully',
