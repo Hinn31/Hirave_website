@@ -58,5 +58,15 @@ Route::get('/dashboard', function () {
     return view('test');
 })->name('dashboard');
 
+//Filter products
+Route::get('/filter-products', function() {
+    return view('components.filter-bar');
+});
 
+Route::get('/product-card', function() {
+    return view('components.product-card');
+});
 
+Route::get('/categories-card', function() {
+    return view('components.categories-card');
+});

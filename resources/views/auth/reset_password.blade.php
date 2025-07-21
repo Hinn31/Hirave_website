@@ -3,6 +3,7 @@
 @section('title', 'Reset Password')
 
 @section('content')
+<div class="container">
     <div class="new-password">
         <form action="{{ route('reset-password') }}" method="POST" class="new-password__form" id="reset-password-form">
             @csrf
@@ -37,5 +38,6 @@
        <script src="{{ asset('js/reset_password.js') }}"></script>
 
     </div>
+</div>
 
 @endsection

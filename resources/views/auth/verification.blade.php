@@ -3,6 +3,7 @@
 @section('title', 'Verification')
 
 @section('content')
+<div class="container">
     <div class="verification">
         <form action="{{ route('verify-otp') }}" method="POST" class="verification__form">
             @csrf
@@ -28,4 +29,5 @@
 
         <script src="{{ asset('js/reset_password.js') }}"></script>
     </div>
+</div>
 @endsection
