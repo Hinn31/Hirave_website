@@ -28,3 +28,6 @@ Route::get('/dashboard', function () {
     return view('test');
 })->name('dashboard');
 
+Route::get('/Products', function () {
+    return view('home');
+})->name('home');
