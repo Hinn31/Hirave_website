@@ -1,0 +1,133 @@
+/* Layout */
+.product-detail {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+}
+
+.product-detail__top {
+    display: flex;
+    gap: 30px;
+}
+
+.product-detail__image img {
+    width: 350px;
+    border-radius: 8px;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+}
+
+.product-detail__info {
+    flex: 1;
+}
+
+/* Title */
+.product-title {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+/* Price */
+.product-price {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 10px;
+}
+
+.product-price__current {
+    font-size: 22px;
+    font-weight: bold;
+    color: #000;
+}
+
+.product-price__original {
+    font-size: 18px;
+    color: #ccc;
+    text-decoration: line-through;
+}
+
+/* Stock */
+.product-stock {
+    margin-bottom: 20px;
+    font-size: 16px;
+}
+
+.product-stock__value {
+    color: #28a745;
+    font-weight: 500;
+}
+
+/* Quantity & Buttons */
+.product-action {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.product-action__row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.qty-btn {
+    width: 36px;
+    height: 36px;
+    font-size: 20px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.qty-input {
+    width: 50px;
+    text-align: center;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    padding: 5px;
+}
+
+/* Buttons */
+.btn {
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: 500;
+    cursor: pointer;
+    border: none;
+}
+
+.btn-black {
+    background-color: #1c1c1c;
+    color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+}
+
+.btn-gray {
+    background-color: #e0e0e0;
+    color: #000;
+}
+
+/* Tabs */
+.product-tabs {
+    margin-top: 30px;
+    border-bottom: 2px solid #eee;
+    display: flex;
+    gap: 30px;
+}
+
+.product-tab {
+    font-size: 18px;
+    font-weight: 500;
+    padding: 8px 0;
+    border: none;
+    background: none;
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+}
+
+.product-tab__active {
+    border-color: #000;
+}

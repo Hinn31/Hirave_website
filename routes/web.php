@@ -74,3 +74,8 @@ Route::get('/product-card', function() {
 Route::get('/categories-card', function() {
     return view('components.categories-card');
 });
+
+//Product detail
+Route::get('/product-detail', function() {
+    return view('components.product-detail');
+});
