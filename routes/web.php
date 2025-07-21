@@ -77,5 +77,5 @@ Route::get('/categories-card', function() {
 
 //Product detail
 Route::get('/product-detail', function() {
-    return view('components.product-detail');
+    return view('pages.product-detail');
 });
