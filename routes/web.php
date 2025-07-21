@@ -61,3 +61,16 @@ Route::get('/dashboard', function () {
 Route::get('/Products', function () {
     return view('home');
 })->name('home');
+
+//Filter products
+Route::get('/filter-products', function() {
+    return view('components.filter-bar');
+});
+
+Route::get('/product-card', function() {
+    return view('components.product-card');
+});
+
+Route::get('/categories-card', function() {
+    return view('components.categories-card');
+});
