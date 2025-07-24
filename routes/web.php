@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\ProductDetailController;
 
 
 // Route::get('/register', function () {
@@ -76,6 +77,6 @@ Route::get('/categories-card', function() {
 });
 
 //Product detail
-Route::get('/product-detail', function() {
-    return view('pages.product-detail');
-});
+Route::get('api/product/{id}', [ProductDetailController::class,'show']);
+Route::get('/product/{id}', [ProductDetailController::class, 'productDetail']);
+Route::post('/product/{id}/reviews', [ProductDetailController::class, 'storeReview'])->name('product.reviews');
