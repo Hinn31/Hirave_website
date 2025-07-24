@@ -25,7 +25,7 @@
         Don't have an account? <a href="{{ route('register') }}">Register here</a>
     </p>
     <p class="auth-bottom-text">
-        <a href="#">Fogot Password?</a>
+        <a href="{{ route('forgot.password.form') }}">Fogot Password?</a>
     </p>
     <p id="login-message" style="margin-top: 10px; color: red;"></p>
   </form>
@@ -59,7 +59,7 @@ form.addEventListener('submit', async function (e) {
         if (response.ok) {
             messageBox.style.color = 'green';
             messageBox.textContent = data.message || 'Login successful!';
-            
+
             form.reset(); // ✅ Đã sửa đúng
             window.location.href = '/test'; // Chuyển trang sau khi login
         } else {

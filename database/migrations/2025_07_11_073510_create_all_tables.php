@@ -26,23 +26,28 @@ return new class extends Migration
         });
 
         // Categories
-        Schema::create('categories', function (Blueprint $table) {
+            Schema::create('categories', function (Blueprint $table) {
             $table->id();
             $table->string('categoryName', 100)->unique();
+            $table->string('image', 255)->nullable(); // đặt sau categoryName
             $table->timestamps();
         });
 
+
         // Products
-        Schema::create('products', function (Blueprint $table) {
-            $table->id();
-            $table->string('productName', 100);
-            $table->decimal('price', 12, 2);
-            $table->text('description')->nullable();
-            $table->string('imageURL', 255)->nullable();
-            $table->integer('stock')->default(0);
-            $table->foreignId('categoryID')->constrained('categories')->onDelete('cascade');
-            $table->timestamps();
-        });
+       Schema::create('products', function (Blueprint $table) {
+        $table->id();
+        $table->string('productName', 100);
+        $table->decimal('price', 12, 2);
+        $table->decimal('oldPrice', 12, 2)->nullable();
+        $table->text('description')->nullable();
+        $table->string('imageURL', 255)->nullable();
+        $table->integer('stock')->default(0);
+        $table->foreignId('categoryID')->constrained('categories')->onDelete('cascade');
+        $table->boolean('is_best_seller')->default(false);
+        $table->boolean('is_new_product')->default(false);
+        $table->timestamps();
+     });
 
         // Carts
         Schema::create('carts', function (Blueprint $table) {

@@ -3,6 +3,7 @@
 @section('title', 'Reset Password')
 
 @section('content')
+<div class="container">
     <div class="new-password">
         <form action="{{ route('reset-password') }}" method="POST" class="new-password__form" id="reset-password-form">
             @csrf
@@ -15,9 +16,6 @@
                 <label class="new-password__label">Enter new password</label>
                 <div class="new-password__input-wrapper">
                     <input type="password" name="password" class="new-password__input" id="password" placeholder="8 symbols at least" required>
-                    <span class="new-password__icon" onclick="togglePassword('password', this)">
-                        <i class="fas fa-eye"></i>
-                    </span>
                     @error('password')
                         <div style="color:red;">{{ $message }}</div>
                     @enderror
@@ -28,9 +26,6 @@
                 <label class="new-password__label">Confirm password</label>
                 <div class="new-password__input-wrapper">
                     <input type="password" name="password_confirmation" class="new-password__input" id="confirm-password" placeholder="8 symbols at least" required>
-                    <span class="new-password__icon" onclick="togglePassword('confirm-password', this)">
-                        <i class="fas fa-eye"></i>
-                    </span>
                     @if ($errors->has('password'))
                         <div style="color:red;">{{ $errors->first('password') }}</div>
                     @endif
@@ -43,5 +38,6 @@
        <script src="{{ asset('js/reset_password.js') }}"></script>
 
     </div>
+</div>
 
 @endsection

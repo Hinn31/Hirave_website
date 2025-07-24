@@ -4,12 +4,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\RegisterController;
-
-
-// Route::get('/register', function () {
-//     return view('auth.register');
-// });
+use App\Http\Controllers\Api\User\ProductController;
 use App\Http\Controllers\Auth\EmailVerificationController;
+
 
 Route::get('/', function () {
     return view('welcome');
@@ -58,6 +55,24 @@ Route::get('/dashboard', function () {
     return view('test');
 })->name('dashboard');
 
-Route::get('/Products', function () {
-    return view('home');
-})->name('home');
+// Route::get('/Products', function () {
+//     return view('pages.product');
+// })->name('product');
+
+//Filter products
+Route::get('/filter-products', function() {
+    return view('components.filter-bar');
+});
+
+Route::get('/product-card', function() {
+    return view('components.product-card');
+});
+
+Route::get('/categories-card', function() {
+    return view('components.categories-card');
+});
+
+Route::get('/Productpage', [ProductController::class, 'productPage'])->name('product.page');
+
+Route::get('/products/{id}', [ProductController::class, 'show'])->name('products.show');
+Route::get('/home', [ProductController::class, 'productPage'])->name('home.page');

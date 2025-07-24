@@ -9,7 +9,7 @@
 <body>
     <h1>Hello {{ $name }}!</h1>
 
-    <p>Thank you for registering an account at <strong>OutfitOn</strong>.</p>
+    <p>Thank you for registering an account at <strong>Hivera</strong>.</p>
 
     <p><strong>Your account details:</strong></p>
     <ul>
