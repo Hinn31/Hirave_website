@@ -76,3 +76,8 @@ Route::get('/Productpage', [ProductController::class, 'productPage'])->name('pro
 
 Route::get('/products/{id}', [ProductController::class, 'show'])->name('products.show');
 Route::get('/home', [ProductController::class, 'productPage'])->name('home.page');
+
+// Homepage
+Route::get('/trang-chu', function() {
+    return view('pages.homepage');
+});

@@ -1,0 +1,187 @@
+/* ======= Home page layout ======= */
+.home-page {
+    font-family: 'Helvetica Neue', sans-serif;
+    color: #111;
+    background-color: #fff;
+    padding: 0;
+    margin: 0;
+}
+
+/* ======= Hero Section ======= */
+.hero {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #fff;
+}
+
+.hero__content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    width: 638px;
+    height: 100vh;
+    align-items: center;
+}
+
+.hero__title {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+.hero__subtitle {
+    font-size: 1rem;
+    color: #444;
+    margin-bottom: 1.5rem;
+}
+
+.hero__button {
+    width: 150px;
+    background-color: #000;
+    color: #fff;
+    padding: 10px;
+    border-radius: 10px;
+    font-weight: 500;
+    font-size: 0.95rem;
+    cursor: pointer;
+}
+
+.hero__button:hover {
+    background-color: #333;
+}
+
+
+.hero__image img {
+    max-height: 100%;
+    width: 600px;
+    object-fit: cover;
+}
+
+/* ======= Service Highlights ======= */
+.service-highlights {
+    display: flex;
+    justify-content: space-around;
+    padding: 2rem 5%;
+    text-align: center;
+    border-bottom: 1px solid #eee;
+    background-color: #fff;
+}
+
+.service__item {
+    flex: 1;
+    max-width: 240px;
+}
+
+.service__icon {
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+    color: #222;
+}
+
+.service__text {
+    font-size: 0.9rem;
+    line-height: 1.4;
+    color: #444;
+}
+
+/* ======= Carousel Section ======= */
+.slideshow-container {
+    max-width: 100%;
+    position: relative;
+    margin: auto;
+}
+
+.mySlides {
+    display: none;
+}
+
+.mySlides img {
+    width: 100%;
+    height: auto;
+    max-height: 600px;
+}
+
+.prev, .next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    margin-top: -22px;
+    padding: 16px;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    transition: 0.6s ease;
+    border-radius: 0 3px 3px 0;
+    user-select: none;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.next {
+    right: 0;
+    border-radius: 3px 0 0 3px;
+}
+
+.prev:hover, .next:hover {
+    background-color: rgba(0,0,0,0.8);
+}
+
+.text {
+    color: #f2f2f2;
+    font-size: 15px;
+    padding: 8px 12px;
+    position: absolute;
+    bottom: 8px;
+    width: 100%;
+    text-align: center;
+}
+
+.numbertext {
+    color: #f2f2f2;
+    font-size: 12px;
+    padding: 8px 12px;
+    position: absolute;
+    top: 0;
+}
+
+.dot {
+    cursor: pointer;
+    height: 15px;
+    width: 15px;
+    margin: 0 2px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.6s ease;
+}
+
+.active, .dot:hover {
+    background-color: #717171;
+}
+
+.fade {
+    animation-name: fade;
+    animation-duration: 1.5s;
+}
+/* ======= Hot Products Section ======= */
+.hot-products {
+    padding: 3rem 5%;
+    background-color: #fff;
+}
+
+.hot-products__title {
+    font-size: 1.6rem;
+    font-weight: 600;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.hot-products__list {
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
