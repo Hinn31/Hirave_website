@@ -55,8 +55,9 @@
                         <div class="review-item">
                             <img src="https://banobagi.vn/wp-content/uploads/2025/05/hinh-anh-anime-nu-11.jpeg" alt="">
                             <div class="review-info">
-                                <strong>{{$review->user->name}}</strong>
-                                <small>{{ $review->reviewDate }}</small>
+                                <strong>{{ $review->user->fullname ?? 'Anonymous' }}</strong>
+                                {{-- <small>{{ $review->reviewDate }}</small> --}}
+                                <small>{{ \Carbon\Carbon::parse($review->reviewDate)->format('d M Y') }}</small>
                                 <p class="review-text">{{ $review->comment }}</p>
                             </div>
                         </div>
@@ -75,7 +76,7 @@
                 <h3 class="review-title">Add a review</h3>
                 <p class="review-description">Your email address will not be published. Required fields are marked *</p>
 
-                <form class="review-form" method="POST" action="{{route('product.reviews', $products->id)}}">
+                {{-- <form class="review-form" method="POST" action="{{route('product.reviews', $products->id)}}">
                     @csrf
                     <textarea placeholder="Your review" required></textarea>
                     <div class="review-form__row">
@@ -83,7 +84,24 @@
                         <input type="email" name="email" placeholder="Email" required>
                     </div>
                     <button type="submit" class="btn btn-submit">Submit</button>
-                </form>
+                </form> --}}
+                @auth
+                    <form class="review-form" method="POST" action="{{ route('product.reviews', $products->id) }}">
+                        @csrf
+                        <textarea name="comment" placeholder="Your review" required></textarea>
+
+                        <input type="hidden" name="userID" value="{{ auth()->user()->id }}">
+
+                        <div class="review-form__row">
+                            <input type="text" name="name" value="{{ auth()->user()->fullname }}" placeholder="Name" required>
+                            <input type="email" name="email" value="{{ auth()->user()->email }}" placeholder="Email" required>
+                        </div>
+
+                        <button type="submit" class="btn btn-submit">Submit</button>
+                    </form>
+                @else
+                    <p>Bạn cần <a href="{{ route('login') }}">đăng nhập</a> để gửi bình luận.</p>
+                @endauth
             </div>
         </div>
     </div>

@@ -34,14 +34,12 @@ class ProductDetailController extends Controller
     //Store Review
     public function storeReview(Request $request, $productId) {
         $request->validate([
-            'rating' => 'required|numeric|min:1|max:5',
             'comment' => 'required|string',
             'userID' => 'required|exists:users,id',
         ]);
 
 
-        $reviews = Reviews::created([
-            'rating' => $request->rating,
+        $reviews = Reviews::create([
             'comment' => $request->comment,
             'reviewDate' => now(),
             'userID' => $request->userID,
