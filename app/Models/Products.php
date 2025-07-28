@@ -17,8 +17,4 @@ class Products extends Model
         return $this->belongsTo(Categories::class, 'categoryID');
     }
 
-    public function reviews()
-    {
-        return $this->hasMany(Reviews::class, 'productID')->latest('reviewDate');
-    }
 }

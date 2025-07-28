@@ -51,32 +51,30 @@
             <div class="tab-pane" data-tab="review">
                 <h3 class="review-title">Customers reviews</h3>
                 <div class="review-list">
-                    @foreach ($products->reviews as $review)
-                        <div class="review-item">
-                            <img src="https://banobagi.vn/wp-content/uploads/2025/05/hinh-anh-anime-nu-11.jpeg" alt="">
-                            <div class="review-info">
-                                <strong>{{ $review->user->fullname ?? 'Anonymous' }}</strong>
-                                {{-- <small>{{ $review->reviewDate }}</small> --}}
-                                <small>{{ \Carbon\Carbon::parse($review->reviewDate)->format('d M Y') }}</small>
-                                <p class="review-text">{{ $review->comment }}</p>
-                            </div>
-                        </div>
-                    @endforeach
 
-                    {{-- <div class="review-item">
+                    <div class="review-item">
+                        <img src="https://banobagi.vn/wp-content/uploads/2025/05/hinh-anh-anime-nu-11.jpeg" alt="">
+                        <div class="review-info">
+                            <strong>Jenna S.</strong>
+                            <small>Mar 15, 2021</small>
+                            <p class="review-text">Very nice product.<br>Everything is perfect. I would recommend!</p>
+                        </div>
+                    </div>
+
+                    <div class="review-item">
                         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQaa1vgMmdGI7ouFqsIsh-CJq3lSFL5fHD3kXK_WSd9-ngNZXE0eGDUD5qJAR_7vtd1beY&usqp=CAU" alt="">
                         <div class="review-info">
                             <strong>Jenna S.</strong>
                             <small>Mar 15, 2021</small>
                             <p class="review-text">Very nice product.<br>Everything is perfect. I would recommend!</p>
                         </div>
-                    </div> --}}
+                    </div>
                 </div>
 
                 <h3 class="review-title">Add a review</h3>
                 <p class="review-description">Your email address will not be published. Required fields are marked *</p>
 
-                {{-- <form class="review-form" method="POST" action="{{route('product.reviews', $products->id)}}">
+                <form class="review-form" method="POST" action="#">
                     @csrf
                     <textarea placeholder="Your review" required></textarea>
                     <div class="review-form__row">
@@ -84,24 +82,8 @@
                         <input type="email" name="email" placeholder="Email" required>
                     </div>
                     <button type="submit" class="btn btn-submit">Submit</button>
-                </form> --}}
-                @auth
-                    <form class="review-form" method="POST" action="{{ route('product.reviews', $products->id) }}">
-                        @csrf
-                        <textarea name="comment" placeholder="Your review" required></textarea>
+                </form>
 
-                        <input type="hidden" name="userID" value="{{ auth()->user()->id }}">
-
-                        <div class="review-form__row">
-                            <input type="text" name="name" value="{{ auth()->user()->fullname }}" placeholder="Name" required>
-                            <input type="email" name="email" value="{{ auth()->user()->email }}" placeholder="Email" required>
-                        </div>
-
-                        <button type="submit" class="btn btn-submit">Submit</button>
-                    </form>
-                @else
-                    <p>Bạn cần <a href="{{ route('login') }}">đăng nhập</a> để gửi bình luận.</p>
-                @endauth
             </div>
         </div>
     </div>

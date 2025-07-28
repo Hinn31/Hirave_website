@@ -10,7 +10,7 @@ class ProductDetailController extends Controller
 {
     //GET /PRODUCT/ID
     public function show($id) {
-        $products = Products::with('categories', 'reviews')->findOrFail($id);
+        $products = Products::with('categories')->findOrFail($id);
         return response()->json([
             'productName'=>$products->productName,
             'price' => $products->price,
@@ -23,7 +23,7 @@ class ProductDetailController extends Controller
 
     //GET PRODUCT TO DISPLAY INTO PRODUCT DETAIL
     public function productDetail($id) {
-        $products = Products::with('categories', 'reviews')->findOrFail($id);
+        $products = Products::with('categories')->findOrFail($id);
         $relatedProducts = Products::where('categoryID', $products->categoryID)
                                 ->where('id', '!=', $products->id)
                                 ->take(4)
@@ -31,21 +31,4 @@ class ProductDetailController extends Controller
             return view('pages.product-detail', compact('products', 'relatedProducts'));
     }
 
-    //Store Review
-    public function storeReview(Request $request, $productId) {
-        $request->validate([
-            'comment' => 'required|string',
-            'userID' => 'required|exists:users,id',
-        ]);
-
-
-        $reviews = Reviews::create([
-            'comment' => $request->comment,
-            'reviewDate' => now(),
-            'userID' => $request->userID,
-            'productID' => $productId
-        ]);
-
-        return response()->json(['success' => true, 'review' => $reviews]);
-    }
 }

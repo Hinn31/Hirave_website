@@ -79,4 +79,3 @@ Route::get('/categories-card', function() {
 //Product detail
 Route::get('api/product/{id}', [ProductDetailController::class,'show']);
 Route::get('/product/{id}', [ProductDetailController::class, 'productDetail']);
-Route::post('/product/{id}/reviews', [ProductDetailController::class, 'storeReview'])->name('product.reviews');
