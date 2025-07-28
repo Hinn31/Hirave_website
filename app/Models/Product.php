@@ -14,6 +14,7 @@ class Product extends Model
         'oldPrice',
         'image',
         'stock',
+        'material', 
         'categoryID',
         'is_best_seller',
         'is_new_product',
@@ -24,3 +25,4 @@ class Product extends Model
         return $this->belongsTo(Category::class, 'categoryID');
     }
 }
+

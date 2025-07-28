@@ -12,7 +12,9 @@ use App\Http\Controllers\Api\User\ProductDetailController;
 //     return view('auth.register');
 // });
 use App\Http\Controllers\Auth\EmailVerificationController;
+use App\Http\Controllers\Web\ProductController2;
 
+Route::get('/products/search', [ProductController2::class, 'search'])->name('products.search');
 
 Route::get('/', function () {
     return view('welcome');
@@ -61,11 +63,6 @@ Route::get('/dashboard', function () {
     return view('test');
 })->name('dashboard');
 
-// Route::get('/Products', function () {
-//     return view('pages.product');
-// })->name('product');
-
-//Filter products
 Route::get('/filter-products', function() {
     return view('components.filter-bar');
 });
@@ -82,7 +79,6 @@ Route::get('/Productpage', [ProductController::class, 'productPage'])->name('pro
 
 Route::get('/products/{id}', [ProductController::class, 'show'])->name('products.show');
 Route::get('/home', [ProductController::class, 'productPage'])->name('home.page');
-
-//Product detail
 Route::get('api/product/{id}', [ProductDetailController::class,'show']);
 Route::get('/product/{id}', [ProductDetailController::class, 'productDetail']);
+Route::get('/products/search', [ProductController2::class, 'search'])->name('products.search');
