@@ -6,7 +6,9 @@ use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Api\User\ProductController;
 use App\Http\Controllers\Auth\EmailVerificationController;
+use App\Http\Controllers\Web\ProductController2;
 
+Route::get('/products/search', [ProductController2::class, 'search'])->name('products.search');
 
 Route::get('/', function () {
     return view('welcome');
@@ -75,4 +77,4 @@ Route::get('/categories-card', function() {
 Route::get('/Productpage', [ProductController::class, 'productPage'])->name('product.page');
 
 Route::get('/products/{id}', [ProductController::class, 'show'])->name('products.show');
-Route::get('/home', [ProductController::class, 'productPage'])->name('home.page');
+Route::get('/products/search', [ProductController2::class, 'search'])->name('products.search');
