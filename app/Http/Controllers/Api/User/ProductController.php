@@ -112,4 +112,13 @@ public function search(Request $request)
     return view('pages.searchresult', compact('products', 'keyword'));
 }
 
+    // Lấy sản phẩm best seller
+    public function getBestSellers()
+    {
+        $products = Product::where('is_best_seller', true)->get();
+
+        return view('pages.homepage', compact('products'));
+    }
+
+
 }
