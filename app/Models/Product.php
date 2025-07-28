@@ -20,8 +20,9 @@ class Product extends Model
         'is_new_product',
     ];
 
-    public function category()
-{
-    return $this->belongsTo(Category::class, 'categoryID');
+     public function category()
+    {
+        return $this->belongsTo(Category::class, 'categoryID');
+    }
 }
-}
+
