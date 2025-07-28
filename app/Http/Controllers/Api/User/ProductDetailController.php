@@ -1,30 +1,30 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api\User;;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Products;
-use App\Models\Reviews;
+use App\Models\Product;
 
 class ProductDetailController extends Controller
 {
     //GET /PRODUCT/ID
     public function show($id) {
-        $products = Products::with('categories')->findOrFail($id);
+        $products = Product::with('category')->findOrFail($id);
         return response()->json([
             'productName'=>$products->productName,
             'price' => $products->price,
             'description' => $products->description,
             'imageUrl' => $products->imageUrl,
             'stock' => $products->stock,
-            'categoryName' => $products->categories->categoryName ?? '',
+            'categoryName' => $products->category->categoryName ?? '',
         ]);
     }
 
     //GET PRODUCT TO DISPLAY INTO PRODUCT DETAIL
     public function productDetail($id) {
-        $products = Products::with('categories')->findOrFail($id);
-        $relatedProducts = Products::where('categoryID', $products->categoryID)
+        $products = Product::with('category')->findOrFail($id);
+        $relatedProducts = Product::where('categoryID', $products->categoryID)
                                 ->where('id', '!=', $products->id)
                                 ->take(4)
                                 ->get();

@@ -11,8 +11,14 @@
     gap: 30px;
 }
 
-.product-detail__image img {
+.product-detail__image {
     width: 400px;
+    height: 400px;
+}
+.product-detail__image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
     border-radius: 8px;
     box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
 }

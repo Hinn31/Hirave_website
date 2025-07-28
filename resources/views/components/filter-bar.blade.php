@@ -1,7 +1,4 @@
-@extends('layouts.app')
-@section('title', 'Categories Filter Nav')
-@section('content')
-
+<link rel="stylesheet" href="{{ asset('css/filter-products.css') }}">
 <div class="filter-products">
     <div class="filter-products-nav">
         <div class="products-nav-left">
@@ -16,4 +13,3 @@
         </div>
     </div>
 
-  @endsection
