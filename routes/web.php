@@ -6,11 +6,6 @@ use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Api\User\ProductController;
 use App\Http\Controllers\Api\User\ProductDetailController;
-
-
-// Route::get('/register', function () {
-//     return view('auth.register');
-// });
 use App\Http\Controllers\Auth\EmailVerificationController;
 use App\Http\Controllers\Web\ProductController2;
 
@@ -79,6 +74,11 @@ Route::get('/Productpage', [ProductController::class, 'productPage'])->name('pro
 
 Route::get('/products/{id}', [ProductController::class, 'show'])->name('products.show');
 Route::get('/home', [ProductController::class, 'productPage'])->name('home.page');
+
+Route::get('/trang-chu', function() {
+    return view('pages.homepage');
+});
 Route::get('api/product/{id}', [ProductDetailController::class,'show']);
 Route::get('/product/{id}', [ProductDetailController::class, 'productDetail']);
 Route::get('/products/search', [ProductController2::class, 'search'])->name('products.search');
+
