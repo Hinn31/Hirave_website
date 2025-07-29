@@ -71,7 +71,7 @@ document.addEventListener('DOMContentLoaded', function() {
 })
 
 // Related product
-document.querySelectorAll('.related-item').forEach(item => {
+document.querySelectorAll('#product-card-mini').forEach(item => {
     item.addEventListener('click', function() {
         const productId = this.dataset.id;
         window.location.href = `/product/${productId}`;
