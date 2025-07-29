@@ -7,8 +7,8 @@
     </div>
 
     <nav class="header-nav" style="display: flex; gap: 20px;">
-        <a class="nav-link" href="{{ url('/') }}">Home</a>
-        <a class="nav-link" href="{{ url('/products') }}">Product</a>
+        <a class="nav-link" href="{{ url('/trang-chu') }}">Home</a>
+        <a class="nav-link" href="{{ url('/Productpage') }}">Product</a>
         <a class="nav-link" href="{{ url('/about') }}">About Us</a>
         <a class="nav-link" href="{{ url('/contact') }}">Contact</a>
     </nav>

@@ -1,29 +1,9 @@
 <head>
     <link rel="stylesheet" href="{{ asset('css/product_card.css') }}">
-    <style>
-        .product-badge {
-            position: absolute;
-            top: 8px;
-            left: 8px;
-            background-color: red;
-            color: white;
-            font-size: 12px;
-            padding: 2px 6px;
-            border-radius: 4px;
-            text-transform: uppercase;
-        }
-
-        .product-badge.new {
-            background-color: green;
-        }
-
-        .product-image {
-            position: relative;
-        }
-    </style>
 </head>
 
 <div class="product-grid">
+<a href="{{ url('/product/' . $product->id) }}">
     <div class="product-card">
         <div class="product-image">
             <img src="{{ asset('images/products/' . $product->imageURL) }}" alt="{{ $product->productName }}">

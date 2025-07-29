@@ -5,32 +5,30 @@
 <div class="product-detail">
     <div class="product-detail__top">
         <div class="product-detail__image">
-            <img src="{{ $products->imageURL }}" alt="Image">
+            <img src="{{ asset('images/products/' . $product->imageURL) }}" alt="{{ $product->productName }}">
         </div>
-
         <div class="product-detail__info">
-            <h1 class="product-title">{{ $products->productName }}</h1>
-
+            <h1 class="product-title">{{ $product->productName }}</h1>
             <div class="product-price">
-                <span class="product-price__current">{{ $products->price }}</span>
+                <span class="product-price__current">${{ number_format($product->price, 2) }}</span>
                 <span class="product-price__original">$139.75</span>
             </div>
 
             <div class="product-stock">
-                Stock: <span class="product-stock__value">{{ $products->stock }}</span>
+                Stock: <span class="product-stock__value">{{ $product->stock }}</span>
             </div>
 
             <div class="product-action">
                 <div class="product-action__row">
                     <div class="qty-box">
-                    <button class="qty-btn qty-btn__minus">-</button>
-                    <input type="number" class="qty-input" value="1" min="1"  data-stock="{{ $products->stock }}">
-                    <button class="qty-btn qty-btn__plus">+</button>
+                        <button class="qty-btn qty-btn__minus">-</button>
+                        <input type="number" class="qty-input" value="1" min="1" data-stock="{{ $product->stock }}">
+                        <button class="qty-btn qty-btn__plus">+</button>
                     </div>
                     <button class="btn btn-add-to-card">Add to cart</button>
                 </div>
                 <button class="btn btn-buy">Buy Now</button>
-                </div>
+            </div>
         </div>
     </div>
 
@@ -40,14 +38,12 @@
             <button class="tab">Review</button>
         </div>
         <div class="tab-content">
-            <!-- Description -->
             <div class="tab-pane active" data-tab="description">
                 <p class="product-description">
-                    {{ $products->description }}
+                    {{ $product->description }}
                 </p>
             </div>
 
-            <!-- Review -->
             <div class="tab-pane" data-tab="review">
                 <h3 class="review-title">Customers reviews</h3>
                 <div class="review-list">
@@ -83,7 +79,6 @@
                     </div>
                     <button type="submit" class="btn btn-submit">Submit</button>
                 </form>
-
             </div>
         </div>
     </div>
@@ -91,15 +86,15 @@
     <div class="related-products">
         <h2 class="related-title">Related products</h2>
         <div class="related-list">
-            @foreach ($relatedProducts as $product)
-                <div class="related-item" data-id="{{ $product->id }}">
-                    <img src="{{$product->imageURL}}" alt="Image">
+            @foreach ($relatedProducts as $related)
+                <div class="related-item" data-id="{{ $related->id }}">
+                    <img src="{{ asset('images/products/' . $related->imageURL) }}" alt="{{ $related->productName }}">
                     <span class="hot-badge">HOT</span>
                 </div>
-
             @endforeach
         </div>
     </div>
 </div>
-    <script src="{{ asset('js/product-detail.js') }}"></script>
+
+<script src="{{ asset('js/product-detail.js') }}"></script>
 @endsection
