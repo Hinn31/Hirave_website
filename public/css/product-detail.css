@@ -45,6 +45,7 @@
     margin-bottom: 10px;
 }
 
+
 .product-price__current {
     font-size: 22px;
     color: #000;
@@ -52,11 +53,10 @@
 
 .product-price__original {
     font-size: 18px;
-    color: #ccc;
+    color: #c90e0e;
     text-decoration: line-through;
 }
 
-/* Stock */
 .product-stock {
     margin-bottom: 20px;
     font-size: 16px;
@@ -67,7 +67,12 @@
     font-weight: 500;
 }
 
-/* Quantity & Buttons */
+.product-total{
+    font-size: 18px;
+    margin-top: 30px;
+    color: #333;
+}
+
 .product-action {
     display: flex;
     flex-direction: column;
@@ -91,7 +96,6 @@
     background-color: white;
 }
 
-/* Button - / + */
 .qty-btn {
     border: none;
     background: transparent;

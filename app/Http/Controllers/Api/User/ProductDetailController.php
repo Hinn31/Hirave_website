@@ -14,6 +14,7 @@ class ProductDetailController extends Controller
         return response()->json([
             'productName'=>$products->productName,
             'price' => $products->price,
+            'oldPrice' => $products->oldPrice,
             'description' => $products->description,
             'imageUrl' => $products->imageUrl,
             'stock' => $products->stock,
@@ -23,12 +24,15 @@ class ProductDetailController extends Controller
 
     //GET PRODUCT TO DISPLAY INTO PRODUCT DETAIL
     public function productDetail($id) {
-        $products = Product::with('category')->findOrFail($id);
-        $relatedProducts = Product::where('categoryID', $products->categoryID)
-                                ->where('id', '!=', $products->id)
-                                ->take(4)
-                                ->get();
-            return view('pages.product-detail', compact('products', 'relatedProducts'));
-    }
+    $product = Product::with('category')->findOrFail($id);
+
+    $relatedProducts = Product::where('categoryID', $product->categoryID)
+                              ->where('id', '!=', $product->id)
+                              ->take(4)
+                              ->get();
+
+    return view('pages.product-detail', compact('product', 'relatedProducts'));
+}
+
 
 }
