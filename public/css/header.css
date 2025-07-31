@@ -8,6 +8,7 @@ body {
     justify-content: space-between;
     align-items: center;
     background-color:white;
+    height: 80px;
     color: black;
     padding: 15px 30px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* đây là bóng */

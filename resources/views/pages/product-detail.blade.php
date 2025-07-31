@@ -1,7 +1,13 @@
-@extends('layouts.app')
+@extends('layouts.master')
 @section('title', 'Product Detail')
 @section('content')
+<link rel="stylesheet" href="{{ asset('css/product-detail.css') }}">
 
+<div class="back-button" style="margin-bottom: 20px;">
+    <a href="{{ route('product.page') }}" class="btn btn-back" style="text-decoration: none; color: #333;">
+        <i class="fas fa-arrow-left"></i> 
+    </a>
+</div>
 <div class="product-detail">
     <div class="product-detail__top">
         <div class="product-detail__image">
@@ -11,7 +17,7 @@
             <h1 class="product-title">{{ $product->productName }}</h1>
             <div class="product-price">
                 <span class="product-price__current">${{ number_format($product->price, 2) }}</span>
-                <span class="product-price__original">$139.75</span>
+                <span class="product-price__original">${{ number_format($product->oldPrice,2) }}</span>
             </div>
 
             <div class="product-stock">
@@ -28,6 +34,10 @@
                     <button class="btn btn-add-to-card">Add to cart</button>
                 </div>
                 <button class="btn btn-buy">Buy Now</button>
+            </div>
+
+            <div class="product-total">
+                Total: <span id="totalPrice">${{ number_format($product->price, 2) }}</span>
             </div>
         </div>
     </div>

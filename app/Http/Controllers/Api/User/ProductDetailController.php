@@ -14,6 +14,7 @@ class ProductDetailController extends Controller
         return response()->json([
             'productName'=>$products->productName,
             'price' => $products->price,
+            'oldPrice' => $products->oldPrice,
             'description' => $products->description,
             'imageUrl' => $products->imageUrl,
             'stock' => $products->stock,

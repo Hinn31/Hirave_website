@@ -1,5 +1,7 @@
 <header class="header" style="display: flex; justify-content: space-between; align-items: center; padding: 10px 20px; background-color: #f2f2f2;">
-    <!-- Logo bên trái -->
+<link rel="stylesheet" href="{{ asset('css/header.css') }}">
+ 
+<!-- Logo bên trái -->
     <div class="header-left">
         <div class="logo">
             <h1 style="margin: 0;">Hivera</h1>
@@ -18,7 +20,9 @@
             <input type="text" name="keyword" placeholder="Search..." required style="padding: 5px;" value="{{ request('keyword') }}">
             <button type="submit" style="padding: 5px 10px;">Search</button>
         </form>
-        <a href="#"><i class="fas fa-user"></i></a>
+        <a href="{{ route('login') }}" title="Đăng nhập">
+            <i class="fas fa-user"></i>
+        </a>
         <a href="#"><i class="fas fa-shopping-cart"></i></a>
     </div>
     
