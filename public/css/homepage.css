@@ -12,7 +12,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #fff;
+    background-color: #D9D9D9;
 }
 
 .hero__content {
@@ -144,6 +144,14 @@
     padding: 8px 12px;
     position: absolute;
     top: 0;
+}
+
+.dot-container {
+    position: relative;
+    bottom: 40px;
+    width: 100%;
+    text-align: center;
+    z-index: 10;
 }
 
 .dot {

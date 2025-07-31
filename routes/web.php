@@ -75,9 +75,7 @@ Route::get('/Productpage', [ProductController::class, 'productPage'])->name('pro
 Route::get('/products/{id}', [ProductController::class, 'show'])->name('products.show');
 // Route::get('/products', [ProductController::class, 'productPage'])->name('home.page');
 
-Route::get('/trang-chu', function() {
-    return view('pages.homepage');
-});
+Route::get('/trang-chu', [ProductController::class, 'getBestSellers']);
 Route::get('api/product/{id}', [ProductDetailController::class,'show']);
 Route::get('/product/{id}', [ProductDetailController::class, 'productDetail']);
 Route::get('/products/search', [ProductController2::class, 'search'])->name('products.search');
