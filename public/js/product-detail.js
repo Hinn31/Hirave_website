@@ -12,7 +12,7 @@ const tabs = document.querySelectorAll(".tab");
     });
 
 //Product-detail
-document.querySelectorAll('btn-view-detail').forEach(button=> {
+document.querySelectorAll('.btn-view-detail').forEach(button=> {
     button.addEventListener('click', function(){
         const productId = this.closest('.product-card').dataset.id;
 
