@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Api\User;
-use App\Http\Controllers\Controller; // ✅ dòng này để kế thừa Controller gốc
+use App\Http\Controllers\Controller; 
 use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Models\Product;

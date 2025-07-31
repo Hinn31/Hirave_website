@@ -32,37 +32,55 @@
     </div>
 </div>
 
-<!-- Kết quả lọc -->
 <div id="productResults" style="margin-top: 30px;"></div>
+
 
 <script>
     const baseApiUrl = "{{ url('/api/products/filter') }}";
 
+    let currentCategory = '';
+    let currentMaterial = '';
+    let currentSort = '';
+
+    function fetchFilteredProducts(category = '', material = '', sort = '') {
+        const url = `${baseApiUrl}?category=${category}&material=${material}&sort=${sort}`;
+
+        fetch(url)
+            .then(response => response.json())
+            .then(data => {
+                const container = document.getElementById('productResults');
+                const defaultSection = document.getElementById('defaultHighlightedProducts');
+
+                if (defaultSection) {
+                    defaultSection.style.display = 'none';
+                }
+
+                container.innerHTML = data.html;
+            })
+            .catch(error => {
+                console.error('Lỗi gọi API:', error);
+                alert('Đã xảy ra lỗi khi tải sản phẩm.');
+            });
+    }
+
     document.querySelectorAll('.filter-link').forEach(link => {
         link.addEventListener('click', function (e) {
             e.preventDefault();
+            currentCategory = this.getAttribute('data-category');
+            currentMaterial = this.getAttribute('data-material');
+            fetchFilteredProducts(currentCategory, currentMaterial, currentSort);
+        });
+    });
 
-            const category = this.getAttribute('data-category');
-            const material = this.getAttribute('data-material');
+    document.querySelectorAll('.sort-link').forEach(link => {
+        link.addEventListener('click', function (e) {
+            e.preventDefault();
+            currentSort = this.getAttribute('data-sort');
 
-            fetch(`${baseApiUrl}?category=${category}&material=${material}`)
-                .then(response => response.json())
-                .then(data => {
-                    const container = document.getElementById('productResults');
-                    const defaultSection = document.getElementById('defaultHighlightedProducts');
+            document.querySelectorAll('.sort-link').forEach(s => s.classList.remove('active-sort'));
+            this.classList.add('active-sort');
 
-                    // Ẩn phần sản phẩm mặc định (nếu đang hiển thị)
-                    if (defaultSection) {
-                        defaultSection.style.display = 'none';
-                    }
-
-                    // Chèn HTML trả về từ server (đã render bằng Blade)
-                    container.innerHTML = data.html;
-                })
-                .catch(error => {
-                    console.error('Lỗi gọi API:', error);
-                    alert('Đã xảy ra lỗi khi tải sản phẩm.');
-                });
+            fetchFilteredProducts(currentCategory, currentMaterial, currentSort);
         });
     });
 </script>

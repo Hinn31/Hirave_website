@@ -58,7 +58,6 @@
         </div>
     </div>
 
-    {{-- Hot product --}}
     <div class="hot-products">
         <h2 class="hot-products__title">Hot Product</h2>
         <div class="hot-products__list">

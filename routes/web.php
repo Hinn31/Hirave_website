@@ -73,7 +73,7 @@ Route::get('/categories-card', function() {
 Route::get('/Productpage', [ProductController::class, 'productPage'])->name('product.page');
 
 Route::get('/products/{id}', [ProductController::class, 'show'])->name('products.show');
-Route::get('/home', [ProductController::class, 'productPage'])->name('home.page');
+// Route::get('/products', [ProductController::class, 'productPage'])->name('home.page');
 
 Route::get('/trang-chu', [ProductController::class, 'getBestSellers']);
 Route::get('api/product/{id}', [ProductDetailController::class,'show']);
