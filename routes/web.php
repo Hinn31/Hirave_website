@@ -5,8 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Api\User\ProductController;
-use App\Http\Controllers\Api\User\UserController;
 use App\Http\Controllers\Auth\EmailVerificationController;
+use App\Http\Controllers\Api\User\UserController;
 
 
 Route::get('/', function () {
@@ -79,10 +79,6 @@ Route::get('/products/{id}', [ProductController::class, 'show'])->name('products
 Route::get('/home', [ProductController::class, 'productPage'])->name('home.page');
 
 // Profile
-Route::get('/profile/user/{id}', [UserController::class, 'show']);
-Route::put('/api/users/{id}', [UserController::class, 'update']);
-
-// Route::get('/profile', function(){
-//     return view('pages.profile');
-// });
+Route::get('/profile/user/{id}', [UserController::class, 'show'])->name('profile.show');
+Route::post('/users/{id}', [UserController::class, 'update'])->name('profile.update');
 

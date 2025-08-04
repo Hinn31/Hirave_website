@@ -10,8 +10,9 @@
 
     <div class="profile">
         <div class="profile__avatar">
-            <img src="https://cdn2.fptshop.com.vn/unsafe/Uploads/images/tin-tuc/176879/Originals/anh-rose%20(2).jpg" alt="Avatar">
-            <label class="edit-icon">✎</label>
+            <img id="avatarPreview" src="{{ asset($user->avatar ?? 'images/avatars/default.jpg') }}" alt="Avatar">
+            <label for="avatar" class="edit-icon">✎</label>
+            <input type="file" id="avatar" name="avatar" accept="image/*" style="display:none;">
         </div>
         <p class="profile__name" id="displayName">{{$user->fullname}} <span>({{$user->username}})</span></p>
 
