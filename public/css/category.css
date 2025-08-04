@@ -1,26 +1,31 @@
+/* Container chính cho grid */
 .category-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-  gap: 30px;
-  margin-top: 10px;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Tự động chia cột theo độ rộng tối thiểu */
+  gap: 25px;
+  margin: 30px auto;
+  max-width: 1200px; /* Giới hạn chiều rộng tổng thể */
+  padding: 0 20px; /* Padding ngang cho khoảng cách đều */
 }
 
+/* Card hiển thị mỗi loại sản phẩm */
 .category-card {
   border: 1px solid #eee;
   border-radius: 12px;
   text-align: center;
-  padding: 2px;
   overflow: hidden;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
   background-color: #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
+/* Hiệu ứng hover nổi nhẹ */
 .category-card:hover {
   transform: translateY(-5px);
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
 }
 
+/* Link bao quanh toàn bộ card */
 .category-card a {
   color: inherit;
   text-decoration: none;
@@ -28,16 +33,28 @@
   padding: 16px;
 }
 
+/* Hình ảnh danh mục */
 .category-image {
   width: 100%;
-  height: 180px;
+  height: 220px;
   object-fit: cover;
   border-radius: 8px;
-  margin-bottom: 2px;
+  margin-bottom: 10px;
 }
 
+/* Tên danh mục */
 .category-name {
   font-size: 16px;
   font-weight: 500;
-  color: #333;
+  color: #5b0202;
+}
+
+/* Tiêu đề “Shop Category” */
+.shop-title {
+  font-size: 28px;
+  font-weight: bold;
+  text-align: center;
+  color: purple;
+  text-decoration: underline;
+  margin-bottom: 20px;
 }

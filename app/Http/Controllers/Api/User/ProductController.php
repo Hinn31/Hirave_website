@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Api\User;
-use App\Http\Controllers\Controller; // ✅ dòng này để kế thừa Controller gốc
+use App\Http\Controllers\Controller; 
 use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Models\Product;
@@ -24,6 +24,7 @@ class ProductController extends Controller
         'oldPrice' => 'nullable|numeric|min:0',
         'imageURL' => 'nullable|string|max:255',
         'stock' => 'required|integer|min:0',
+        'material' => 'nullable|string|max:50',
         'categoryID' => 'required|exists:categories,id',
         'is_best_seller' => 'required|boolean',
         'is_new_product' => 'required|boolean',
@@ -63,6 +64,7 @@ class ProductController extends Controller
             'oldPrice' => 'nullable|numeric|min:0',
             'imageURL' => 'nullable|string|max:255',
             'stock' => 'required|integer|min:0',
+            'material' => 'nullable|string|max:50',
             'categoryID' => 'required|exists:categories,id',
             'is_best_seller' => 'required|boolean',
             'is_new_product' => 'required|boolean',
@@ -99,4 +101,24 @@ class ProductController extends Controller
         'categories' => $categories,
     ]);
 }
+public function search(Request $request)
+{
+    $keyword = $request->input('keyword');
+
+    $products = Product::where('productName', 'like', "%$keyword%")
+        ->orWhere('description', 'like', "%$keyword%")
+        ->get();
+
+    return view('pages.searchresult', compact('products', 'keyword'));
+}
+
+    // Lấy sản phẩm best seller
+    public function getBestSellers()
+    {
+        $products = Product::where('is_best_seller', true)->get();
+
+        return view('pages.homepage', compact('products'));
+    }
+
+
 }

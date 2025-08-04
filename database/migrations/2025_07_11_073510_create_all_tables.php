@@ -33,7 +33,6 @@ return new class extends Migration
             $table->timestamps();
         });
 
-
         // Products
        Schema::create('products', function (Blueprint $table) {
         $table->id();
@@ -43,6 +42,7 @@ return new class extends Migration
         $table->text('description')->nullable();
         $table->string('imageURL', 255)->nullable();
         $table->integer('stock')->default(0);
+        $table->string('material', 50)->nullable();
         $table->foreignId('categoryID')->constrained('categories')->onDelete('cascade');
         $table->boolean('is_best_seller')->default(false);
         $table->boolean('is_new_product')->default(false);

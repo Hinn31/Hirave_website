@@ -100,7 +100,7 @@ class UserController extends Controller
             $filename = time() . '_' . $file->getClientOriginalName();
             $file->move(public_path('images/avatars'), $filename);
             $user->avatar = 'images/avatars/' . $filename;
-        } 
+        }
 
         // Cập nhật dữ liệu
         $user->fill([
@@ -144,37 +144,4 @@ class UserController extends Controller
         return response()->json(['message' => 'User deleted successfully']);
     }
 
-    // POST: UpdateImage
-    // public function updateImage(Request $request) {
-    //     $user = User::find($request->id);
-
-    //     if(!$user) {
-    //         return response()->json(['message' => 'User not found'], 404);
-    //     };
-
-    //     $validator = Validator::make($request->all(), [
-    //         'image' => 'required|image|mimes:jpeg,png,jpg,gif,'
-    //     ]);
-
-    //     if($validator->fails()) {
-    //         return response()->json([
-    //             'message' => 'Validation failed',
-    //             'errors' => $validator->errors()
-    //         ], 422);
-    //     }
-
-    //     // Upload new image
-    //     $file = $request->files('avatar');
-    //     $filename = time() . '_' . $file->getClientOriginalName();
-    //     $file->move(public_path('images/avatars'), $filename);
-
-    //     // Update Image URL
-    //     $user->avatar = 'images/avatars/'.$filename;
-    //     $user->save();
-
-    //     return response()->json([
-    //         'message' => 'Image updated successfully',
-    //         'avatar_url' => asset($user->avatar)
-    //     ]);
-    // }
 }
