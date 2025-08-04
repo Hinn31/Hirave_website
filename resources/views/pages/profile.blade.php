@@ -9,12 +9,14 @@
 @section('content')
 
     <div class="profile">
-        <div class="profile__avatar">
-            <img id="avatarPreview" src="{{ asset($user->avatar ?? 'images/avatars/default.jpg') }}" alt="Avatar">
-            <label for="avatar" class="edit-icon">✎</label>
-            <input type="file" id="avatar" name="avatar" accept="image/*" style="display:none;">
+        <div class="profile__header">
+            <div class="profile__avatar">
+                <img id="avatarPreview" src="{{ asset($user->avatar ?? 'images/avatars/default.jpg') }}" alt="Avatar">
+                <label for="avatar" class="edit-icon">✎</label>
+                <input type="file" id="avatar" name="avatar" accept="image/*" style="display:none;">
+            </div>
+            <p class="profile__name" id="displayName">{{$user->fullname}} <span>({{$user->username}})</span></p>
         </div>
-        <p class="profile__name" id="displayName">{{$user->fullname}} <span>({{$user->username}})</span></p>
 
         <form class="profile__form" id="updateProfileForm" data-user-id="{{ $user->id }}">
             <label for="username">Username</label>
