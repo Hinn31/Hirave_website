@@ -87,3 +87,7 @@ Route::get('api/product/{id}', [ProductDetailController::class,'show']);
 Route::get('/product/{id}', [ProductDetailController::class, 'productDetail']);
 Route::get('/products/search', [ProductController2::class, 'search'])->name('products.search');
 
+// Payment
+Route::get('/payment', function(){
+    return view('pages.payment');
+});
