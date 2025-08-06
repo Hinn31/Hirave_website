@@ -79,10 +79,6 @@ document.addEventListener('DOMContentLoaded', function () {
     updateTotalPrice();
 });
 
-// Related product
-document.querySelectorAll('#product-card-mini').forEach(item => {
-    item.addEventListener('click', function() {
-=======
 // Related products - click to go to detail page
 document.querySelectorAll('.related-item').forEach(item => {
     item.addEventListener('click', function () {

@@ -7,6 +7,7 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Api\User\ProductController;
 use App\Http\Controllers\Api\User\ProductDetailController;
 use App\Http\Controllers\Auth\EmailVerificationController;
+use App\Http\Controllers\Api\User\UserController;
 use App\Http\Controllers\Web\ProductController2;
 
 Route::get('/products/search', [ProductController2::class, 'search'])->name('products.search');
@@ -73,6 +74,12 @@ Route::get('/categories-card', function() {
 Route::get('/Productpage', [ProductController::class, 'productPage'])->name('product.page');
 
 Route::get('/products/{id}', [ProductController::class, 'show'])->name('products.show');
+Route::get('/home', [ProductController::class, 'productPage'])->name('home.page');
+
+// Profile
+Route::get('/profile/user/{id}', [UserController::class, 'show'])->name('profile.show');
+Route::post('/users/{id}', [UserController::class, 'update'])->name('profile.update');
+
 // Route::get('/products', [ProductController::class, 'productPage'])->name('home.page');
 
 Route::get('/trang-chu', [ProductController::class, 'getBestSellers']);
@@ -80,3 +87,7 @@ Route::get('api/product/{id}', [ProductDetailController::class,'show']);
 Route::get('/product/{id}', [ProductDetailController::class, 'productDetail']);
 Route::get('/products/search', [ProductController2::class, 'search'])->name('products.search');
 
+// Payment
+Route::get('/payment', function(){
+    return view('pages.payment');
+});
