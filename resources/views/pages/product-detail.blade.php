@@ -57,9 +57,12 @@
                 <h3 class="review-title">Add a review</h3>
                 <p class="review-description">Your email address will not be published. Required fields are marked *</p>
 
-                <form class="review-form" method="POST" action="#">
+                <form class="review-form" method="POST" action="{{ route('reviews.store') }}">
                     @csrf
+                    <input type="hidden" name="product_id" value="{{ $products->id }}">
+
                     <textarea placeholder="Your review" required></textarea>
+
                     <div class="review-form__row">
                         <input type="text" name="name" placeholder="Name" required>
                         <input type="email" name="email" placeholder="Email" required>

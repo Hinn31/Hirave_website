@@ -80,5 +80,6 @@ Route::get('/trang-chu', function() {
 });
 Route::get('api/product/{id}', [ProductDetailController::class,'show']);
 Route::get('/product/{id}', [ProductDetailController::class, 'productDetail']);
+Route::post('/reviews', [ProductDetailController::class, 'store'])->name('reviews.store')->middleware('auth');
 Route::get('/products/search', [ProductController2::class, 'search'])->name('products.search');
 

@@ -14,7 +14,7 @@ class Product extends Model
         'oldPrice',
         'image',
         'stock',
-        'material', 
+        'material',
         'categoryID',
         'is_best_seller',
         'is_new_product',
@@ -23,6 +23,11 @@ class Product extends Model
      public function category()
     {
         return $this->belongsTo(Category::class, 'categoryID');
+    }
+
+    public function reviews()
+    {
+        return $this->hasMany(Review::class, 'productID');
     }
 }
 
