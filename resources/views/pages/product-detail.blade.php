@@ -5,13 +5,13 @@
 
 <div class="back-button" style="margin-bottom: 20px;">
     <a href="{{ route('product.page') }}" class="btn btn-back" style="text-decoration: none; color: #333;">
-        <i class="fas fa-arrow-left"></i> 
+        <i class="fas fa-arrow-left"></i>
     </a>
 </div>
 <div class="product-detail">
     <div class="product-detail__top">
         <div class="product-detail__image">
-            <img src="{{ asset($products->imageURL) }}" alt="Image">
+            <img src="{{ asset($product->imageURL) }}" alt="Image">
             <img src="{{ asset('images/products/' . $product->imageURL) }}" alt="{{ $product->productName }}">
         </div>
         <div class="product-detail__info">

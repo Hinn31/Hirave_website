@@ -11,3 +11,4 @@
         <span class="product-card__badge">HOT</span>
     </div>
 @endforeach
+@endforeach
