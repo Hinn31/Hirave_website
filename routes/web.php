@@ -91,3 +91,8 @@ Route::get('/products/search', [ProductController2::class, 'search'])->name('pro
 Route::get('/payment', function(){
     return view('pages.payment');
 });
+
+// About Us
+Route::get('/about', function() {
+    return view('pages.about-us');
+});
