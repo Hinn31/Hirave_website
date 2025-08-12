@@ -64,14 +64,14 @@
                 <h3 class="review-title">Add a review</h3>
                 <p class="review-description">Your email address will not be published. Required fields are marked *</p>
 
-                <form id="reviewForm" class="review-form" method="POST" action="{{ route('reviews.store') }}">
+                <form id="reviewForm" class="review-form">
                     @csrf
                     <input type="hidden" id="product_id" name="product_id" value="{{ $product->id }}">
                     <textarea id="comment" name="comment" placeholder="Your review" required></textarea>
 
                     <div class="review-form__row">
-                        <input type="text" name="name" placeholder="Name" required>
-                        <input type="email" name="email" placeholder="Email" required>
+                        <input type="text" name="name" placeholder="Name" required id="name">
+                        <input type="email" name="email" placeholder="Email" required id="email">
                     </div>
                     <button type="submit" class="btn btn-submit">Submit</button>
                 </form>

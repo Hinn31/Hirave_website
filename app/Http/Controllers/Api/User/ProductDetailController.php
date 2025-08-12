@@ -43,19 +43,27 @@ class ProductDetailController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'product_id' => 'required|integer',
-            'comment'    => 'required|string|max:1000',
+            'product_id' => 'required|integer|exists:products,id',
+            'comment' => 'required|string|max:1000',
+            'name' => 'required|string|max:50',
+            'email' => 'required|email',
         ]);
 
+        if (!$request->user()) {
+            return response()->json(['message' => 'Please log in to comment.'], 401);
+        }
+
         $review = Review::create([
-            'user_id'    => $request->user()->id,
+            'user_id' => $request->user()->id,
             'product_id' => $request->product_id,
-            'comment'    => $request->comment,
+            'comment' => $request->comment,
+            'name' => $request->name,
+            'email' => $request->email,
         ]);
 
         return response()->json([
             'message' => 'Review added successfully',
-            'review'  => $review
+            'review' => $review
         ]);
     }
     //  public function postReview(Request $request, $id)

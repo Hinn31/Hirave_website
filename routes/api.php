@@ -23,6 +23,7 @@ Route::apiResource('products', ProductController::class); // giữ nguyên CRUD
 Route::get('/search', [ProductController::class, 'search']);
 Route::get('/products/filter', [ProductFilterController::class, 'filter']);
 
-// Route::get('/product/{id}', [ProductDetailController::class, 'productDetail']);
-Route::post('/reviews', [ProductDetailController::class, 'store'])->name('reviews.store')->middleware('auth:sanctum');
+Route::middleware('auth:api')->group(function () {
+    Route::post('/reviews', [ProductDetailController::class, 'store']);
+});
 

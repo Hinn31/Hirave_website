@@ -99,6 +99,8 @@ document.addEventListener('DOMContentLoaded', function () {
             const token = localStorage.getItem('auth_token');
             const productId = document.getElementById('product_id').value;
             const comment = document.getElementById('comment').value;
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
 
             if (!token) {
                 reviewMessage.textContent = 'Please log in to comment.';
@@ -113,7 +115,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         'Content-Type': 'application/json',
                         'Authorization': `Bearer ${token}`
                     },
-                    body: JSON.stringify({ product_id: productId, comment })
+                    body: JSON.stringify({ product_id: productId, comment, name, email })
                 });
 
                 const data = await res.json();
@@ -121,13 +123,13 @@ document.addEventListener('DOMContentLoaded', function () {
                 if (res.ok) {
                     reviewMessage.textContent = 'Comment added successfully!';
                     reviewMessage.style.color = 'green';
-                    document.getElementById('comment').value = ''; // Clear textarea
+                    reviewForm.reset(); // Clear all form fields
 
                     // Add new comment to review list dynamically
                     const newReview = document.createElement('div');
                     newReview.classList.add('review-item');
                     newReview.innerHTML = `
-                        <p><strong>${data.review.user_id || 'Anonymous'}</strong>: ${comment}</p>
+                        <p><strong>${name || 'Anonymous'}</strong>: ${comment}</p>
                         <small>Just now</small>
                     `;
                     reviewList.prepend(newReview);
