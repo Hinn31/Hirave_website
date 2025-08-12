@@ -40,6 +40,12 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+
+        'api' => [
+        'driver' => 'sanctum',  // Thay vì 'token' hoặc 'passport', bạn dùng 'sanctum'
+        'provider' => 'users',
+        'hash' => false,
+    ],
     ],
 
     /*
