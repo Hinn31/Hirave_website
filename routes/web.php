@@ -89,12 +89,6 @@ Route::get('/payment', function(){
     return view('pages.payment');
 });
 
-<<<<<<< HEAD
-// About Us
-Route::get('/about', function() {
-    return view('pages.about-us');
-});
-=======
 Route::get('/data', function () {
     dd(env('DB_CONNECTION'));
 });
@@ -108,7 +102,7 @@ Route::get('/cart', function () {
     return view('pages.cart');
 })->name('cart.page');  // <-- sửa thành cart.page đúng với tên bạn gọi trong view
 
-
-
-
->>>>>>> 57f90e3fb06d35415de11faedf2ccf985dbcb4e5
+// About Us
+Route::get('/about', function() {
+    return view('pages.about-us');
+});
