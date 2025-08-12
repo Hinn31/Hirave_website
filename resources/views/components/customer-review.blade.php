@@ -4,7 +4,7 @@
         <img src="{{ asset($review->user->avatar ?? 'images/avatars/default.jpg') }}" alt="Avatar">
         <div class="review-info">
             <strong>{{ $review->user->fullname ?? 'Anonymous' }}</strong>
-            <small>{{ $review->reviewDate->format('M d, Y') }}</small>
+            <small>{{ \Carbon\Carbon::parse($review->reviewDate)->format('M d, Y') }}</small>
             <p class="review-text">{{$review->comment}}</p>
         </div>
     </div>
