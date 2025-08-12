@@ -17,8 +17,9 @@ class ProductDetailController extends Controller
         return response()->json([
             'productName'=>$products->productName,
             'price' => $products->price,
+            'oldPrice' => $products->oldPrice,
             'description' => $products->description,
-            'imageUrl' => $products->imageUrl,
+            'imageUrl' => asset('images/products/' . $products->imageUrl),
             'stock' => $products->stock,
             'categoryName' => $products->category->categoryName ?? '',
         ]);
@@ -26,54 +27,50 @@ class ProductDetailController extends Controller
 
     //GET PRODUCT TO DISPLAY INTO PRODUCT DETAIL
     public function productDetail($id) {
-        $products = Product::with('category')->findOrFail($id);
-        $relatedProducts = Product::where('categoryID', $products->categoryID)
-                                ->where('id', '!=', $products->id)
-                                ->take(4)
-                                ->get();
+    $product = Product::with('category')->findOrFail($id);
+
+    $relatedProducts = Product::where('categoryID', $product->categoryID)
+                              ->where('id', '!=', $product->id)
+                              ->take(4)
+                              ->get();
         // $reviews = $products->reviews()->with('user')->orderBy('reviewDate', 'desc')->get();
         $reviews = Review::with('user')->where('productID', $id)->orderBy('reviewDate', 'desc')->get();
-        
-        return view('pages.product-detail', compact('products', 'relatedProducts', 'reviews'));
+    return view('pages.product-detail', compact('product', 'relatedProducts', 'reviews'));
+
     }
 
-    // public function store(Request $request)
-    // {
-    //     $request->validate([
-    //         'product_id' => 'required|exists:products,id',
-    //         'name' => 'required|string|max:50',
-    //         'email' => 'required|email',
-    //         'comment' => 'required|string|max:1000',
-    //     ]);
 
-    //     $user = User::firstOrCreate(
-    //         ['email' => $request->email],
-    //         ['fullname' => $request->name, 'username' => uniqid(), 'password' => bcrypt('12345678')]
-    //     );
-
-    //     Review::create([
-    //         'userID' => $user->id,
-    //         'productID' => $request->product_id,
-    //         'comment' => $request->comment,
-    //         'reviewDate' => now(),
-    //     ]);
-
-    //     return back()->with('success', 'Your comment has been posted!');
-    // }
-
-     public function postReview(Request $request, $id)
+    public function store(Request $request)
     {
         $request->validate([
-            'comment' => 'required|max:500',
+            'product_id' => 'required|integer',
+            'comment'    => 'required|string|max:1000',
         ]);
 
-        // Tạo bình luận mới
-        $review = new Review();
-        $review->productID = $id;
-        $review->userID = Auth::id(); // Lưu id người dùng
-        $review->comment = $request->comment;
-        $review->save();
+        $review = Review::create([
+            'user_id'    => $request->user()->id,
+            'product_id' => $request->product_id,
+            'comment'    => $request->comment,
+        ]);
 
-        return back()->with('success', 'Bình luận đã được thêm!');
+        return response()->json([
+            'message' => 'Review added successfully',
+            'review'  => $review
+        ]);
     }
+    //  public function postReview(Request $request, $id)
+    // {
+    //     $request->validate([
+    //         'comment' => 'required|max:500',
+    //     ]);
+
+    //     // Tạo bình luận mới
+    //     $review = new Review();
+    //     $review->productID = $id;
+    //     $review->userID = Auth::id(); // Lưu id người dùng
+    //     $review->comment = $request->comment;
+    //     $review->save();
+
+    //     return back()->with('success', 'Bình luận đã được thêm!');
+    // }
 }

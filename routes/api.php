@@ -1,11 +1,11 @@
 <?php
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Api\UserController;
 use App\Models\User;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\User\ProductController;
 use App\Http\Controllers\Api\User\ProductFilterController;
+use App\Http\Controllers\Api\User\ProductDetailController;
 
 
 Route::post('/login', [AuthController::class, 'login']);
@@ -23,4 +23,6 @@ Route::apiResource('products', ProductController::class); // giữ nguyên CRUD
 Route::get('/search', [ProductController::class, 'search']);
 Route::get('/products/filter', [ProductFilterController::class, 'filter']);
 
+// Route::get('/product/{id}', [ProductDetailController::class, 'productDetail']);
+Route::post('/reviews', [ProductDetailController::class, 'store'])->name('reviews.store')->middleware('auth:sanctum');
 

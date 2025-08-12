@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Api\User;
-use App\Http\Controllers\Controller; // ✅ dòng này để kế thừa Controller gốc
+use App\Http\Controllers\Controller; 
 use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Models\Product;
@@ -111,5 +111,14 @@ public function search(Request $request)
 
     return view('pages.searchresult', compact('products', 'keyword'));
 }
+
+    // Lấy sản phẩm best seller
+    public function getBestSellers()
+    {
+        $products = Product::where('is_best_seller', true)->get();
+
+        return view('pages.homepage', compact('products'));
+    }
+
 
 }

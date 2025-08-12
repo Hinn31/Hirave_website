@@ -51,18 +51,17 @@
             <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
             <a class="next" onclick="plusSlides(1)">&#10095;</a>
         </div>
-        <div style="text-align:center">
+        <div class="dot-container">
             <span class="dot" onclick="currentSlide(1)"></span>
             <span class="dot" onclick="currentSlide(2)"></span>
             <span class="dot" onclick="currentSlide(3)"></span>
         </div>
     </div>
 
-    {{-- Hot product --}}
     <div class="hot-products">
         <h2 class="hot-products__title">Hot Product</h2>
         <div class="hot-products__list">
-            @include('components.product-card-mini')
+            @include('components.product-card-mini', ['products' => $products])
         </div>
     </div>
 

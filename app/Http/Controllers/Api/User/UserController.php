@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers\Api\User;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -64,7 +64,7 @@ class UserController extends Controller
             return response()->json(['message' => 'User not found'], 404);
         }
 
-        return response()->json($user);
+        return view('pages.profile', compact('user'));
     }
 
     // PUT/PATCH /api/users/{id}
@@ -83,7 +83,7 @@ class UserController extends Controller
             'email'          => 'nullable|email|unique:users,email,' . $id,
             'username'       => 'nullable|string|max:50|unique:users,username,' . $id,
             'password'       => 'nullable|string|min:6',
-            'avatar'         => 'nullable|string|max:135',
+            'avatar'         => 'nullable',
             'role'           => 'nullable|in:admin,customer'
         ]);
 
@@ -94,6 +94,14 @@ class UserController extends Controller
             ], 422);
         }
 
+         // Nếu gửi dạng file, xử lý upload ảnh
+        if ($request->hasFile('avatar')) {
+            $file = $request->file('avatar');
+            $filename = time() . '_' . $file->getClientOriginalName();
+            $file->move(public_path('images/avatars'), $filename);
+            $user->avatar = 'images/avatars/' . $filename;
+        }
+
         // Cập nhật dữ liệu
         $user->fill([
             'fullname'      => $request->fullname ?? $user->fullname,
@@ -101,7 +109,7 @@ class UserController extends Controller
             'phone'         => $request->phone ?? $user->phone,
             'email'         => $request->email ?? $user->email,
             'username'      => $request->username ?? $user->username,
-            'avatar'        => $request->avatar ?? $user->avatar,
+            // 'avatar'        => $request->avatar ?? $user->avatar,
             'role'          => $request->role ?? $user->role,
         ]);
 
@@ -109,11 +117,16 @@ class UserController extends Controller
             $user->password = Hash::make($request->password);
         }
 
-        $user->save();
+
+        if (!$user->save()) {
+            return response()->json(['message' => 'Failed to save user'], 500);
+        }
+        // $user->save();
 
         return response()->json([
             'message' => 'User updated successfully',
-            'user'    => $user
+            'user'    => $user,
+            'avatar_url'  => asset($user->avatar)
         ]);
     }
 
@@ -130,4 +143,5 @@ class UserController extends Controller
 
         return response()->json(['message' => 'User deleted successfully']);
     }
+
 }

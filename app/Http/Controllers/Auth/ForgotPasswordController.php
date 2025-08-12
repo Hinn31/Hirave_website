@@ -98,8 +98,7 @@ class ForgotPasswordController extends Controller
 
         return back()->with('message', 'A new OTP has been sent!');
     }
-
-    //GET Reset Password
+//GET Reset Password
     public function showResetForm()
     {
         $email = Session::get('reset_email');
