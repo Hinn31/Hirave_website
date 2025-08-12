@@ -6,6 +6,7 @@ use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Api\User\ProductController;
 use App\Http\Controllers\Api\User\ProductDetailController;
+use App\Http\Controllers\Api\User\CartController;
 use App\Http\Controllers\Auth\EmailVerificationController;
 use App\Http\Controllers\Api\User\UserController;
 use App\Http\Controllers\Web\ProductController2;
@@ -14,10 +15,6 @@ Route::get('/products/search', [ProductController2::class, 'search'])->name('pro
 
 Route::get('/', function () {
     return view('welcome');
-});
-
-Route::get('/test', function () {
-    return view('test');
 });
 
 Route::get('/register', function () {
@@ -92,7 +89,26 @@ Route::get('/payment', function(){
     return view('pages.payment');
 });
 
+<<<<<<< HEAD
 // About Us
 Route::get('/about', function() {
     return view('pages.about-us');
 });
+=======
+Route::get('/data', function () {
+    dd(env('DB_CONNECTION'));
+});
+
+
+Route::middleware('auth')->get('/test-auth', function () {
+    return 'Bạn đã đăng nhập web!';
+});
+
+Route::get('/cart', function () {
+    return view('pages.cart');
+})->name('cart.page');  // <-- sửa thành cart.page đúng với tên bạn gọi trong view
+
+
+
+
+>>>>>>> 57f90e3fb06d35415de11faedf2ccf985dbcb4e5

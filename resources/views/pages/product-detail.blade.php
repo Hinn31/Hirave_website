@@ -2,16 +2,20 @@
 @section('title', 'Product Detail')
 @section('content')
 <link rel="stylesheet" href="{{ asset('css/product-detail.css') }}">
+<meta name="csrf-token" content="{{ csrf_token() }}">
 
 <div class="back-button" style="margin-bottom: 20px;">
     <a href="{{ route('product.page') }}" class="btn btn-back" style="text-decoration: none; color: #333;">
         <i class="fas fa-arrow-left"></i>
     </a>
 </div>
-<div class="product-detail">
+<div class="product-detail" data-product-id="{{ $product->id }}">
     <div class="product-detail__top">
         <div class="product-detail__image">
+<<<<<<< HEAD
             <img src="{{ asset($product->imageURL) }}" alt="Image">
+=======
+>>>>>>> 57f90e3fb06d35415de11faedf2ccf985dbcb4e5
             <img src="{{ asset('images/products/' . $product->imageURL) }}" alt="{{ $product->productName }}">
         </div>
         <div class="product-detail__info">
@@ -76,12 +80,9 @@
             </div>
         </div>
     </div>
-
-    {{-- Related product --}}
     <div class="related-products">
         <h2 class="related-title">Related products</h2>
         <div class="related-list">
-            @include('components.product-card-mini', ['products' => $relatedProducts])
             @foreach ($relatedProducts as $related)
                 <div class="related-item" data-id="{{ $related->id }}">
                     <img src="{{ asset('images/products/' . $related->imageURL) }}" alt="{{ $related->productName }}">
@@ -91,6 +92,10 @@
         </div>
     </div>
 </div>
+<script>
+    const addToCartUrl = "{{ route('cart.add') }}";
+</script>
 
+<script src="{{ asset('js/cart.js') }}"></script>
 <script src="{{ asset('js/product-detail.js') }}"></script>
 @endsection

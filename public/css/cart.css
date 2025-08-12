@@ -1,0 +1,76 @@
+  .cart-table {
+    width: 100%;
+    border-collapse: collapse;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    border-radius: 8px;
+    overflow: hidden;
+    background: white;
+    font-family: Arial, sans-serif;
+  }
+  .cart-table thead {
+    background-color: #f7f7f7;
+  }
+  .cart-table th, .cart-table td {
+    padding: 12px 15px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+  }
+  .cart-table th {
+    font-weight: 600;
+  }
+  .cart-table tbody tr:hover {
+    background-color: #f1f1f1;
+  }
+  .cart-image {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+  }
+  .quantity-control {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .quantity-control button {
+    width: 25px;
+    height: 25px;
+    border: 1px solid #ccc;
+    background: none;
+    cursor: pointer;
+    font-weight: bold;
+  }
+  .quantity-control input {
+    width: 40px;
+    text-align: center;
+    border: 1px solid #ccc;
+    margin: 0 5px;
+    height: 25px;
+    border-radius: 4px;
+  }
+  .btn-delete {
+    cursor: pointer;
+    color: red;
+    font-weight: bold;
+    font-size: 18px;
+  }
+  .cart-footer {
+    margin-top: 15px;
+    text-align: right;
+    font-size: 18px;
+  }
+  .cart-footer span.total-amount {
+    color: red;
+    font-weight: 700;
+  }
+  .btn-continue, .btn-checkout {
+    padding: 8px 15px;
+    border-radius: 20px;
+    border: 1px solid black;
+    cursor: pointer;
+    margin-left: 10px;
+  }
+  .btn-checkout {
+    background-color: black;
+    color: white;
+    border: none;
+  }
