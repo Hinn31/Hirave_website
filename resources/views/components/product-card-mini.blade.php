@@ -2,9 +2,6 @@
 
 <link rel="stylesheet" href="{{ asset('css/product-card-mini.css') }}">
 
-@foreach ($products as $bestSeller)
-    <div class="product-card-mini">
-        <img src="{{asset($bestSeller->imageURL)}}" alt="Image" class="product-card__image">
 @foreach ($products as $product)
     <div class="product-card-mini" data-id="{{ $product->id }}" id="product-card-mini">
         <img src="{{asset($product->imageURL)}}" alt="Image" class="product-card__image">
