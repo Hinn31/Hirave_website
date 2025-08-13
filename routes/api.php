@@ -6,7 +6,7 @@ use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\User\ProductController;
 use App\Http\Controllers\Api\User\ProductFilterController;
 use App\Http\Controllers\Api\User\CartController;
-
+use App\Http\Controllers\Api\User\ContactController;
 
 // routes/api.php
 Route::prefix('cart')->middleware('auth:sanctum')->group(function () {
@@ -18,7 +18,6 @@ Route::prefix('cart')->middleware('auth:sanctum')->group(function () {
 
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/register', [AuthController::class, 'register']);
-// routes/api.php
 Route::middleware('auth:sanctum')
     ->post('/logout', [AuthController::class, 'logout'])
     ->name('logout');
@@ -26,16 +25,13 @@ Route::middleware('auth:sanctum')
 Route::get('/users', function () {
     return User::all();
 });
-
-// ⚠️ Đổi đường dẫn tránh trùng GET /api/products
 Route::get('/products/filter', [ProductController::class, 'filter']);
-// Route::get('/products/search', [ProductController::class, 'search']);
-Route::apiResource('products', ProductController::class); // giữ nguyên CRUD
+Route::apiResource('products', ProductController::class); 
 Route::get('/search', [ProductController::class, 'search']);
 Route::get('/products/filter', [ProductFilterController::class, 'filter']);
-
-// routes/api.php
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::post('/contact/send', [ContactController::class, 'store'])->name('contact.send');
 
