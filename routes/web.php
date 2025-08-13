@@ -82,6 +82,7 @@ Route::post('/users/{id}', [UserController::class, 'update'])->name('profile.upd
 Route::get('/trang-chu', [ProductController::class, 'getBestSellers']);
 Route::get('api/product/{id}', [ProductDetailController::class,'show']);
 Route::get('/product/{id}', [ProductDetailController::class, 'productDetail']);
+// Route::post('/api/reviews', [ProductDetailController::class, 'store'])->name('reviews.store');
 Route::get('/products/search', [ProductController2::class, 'search'])->name('products.search');
 
 // Payment

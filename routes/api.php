@@ -6,6 +6,7 @@ use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\User\ProductController;
 use App\Http\Controllers\Api\User\ProductFilterController;
 use App\Http\Controllers\Api\User\CartController;
+use App\Http\Controllers\Api\User\ProductDetailController;
 use App\Http\Controllers\Api\User\ContactController;
 
 // routes/api.php
@@ -31,6 +32,9 @@ Route::get('/search', [ProductController::class, 'search']);
 Route::get('/products/filter', [ProductFilterController::class, 'filter']);
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
+});
+Route::middleware('auth:sanctum')->group(function () {
+    Route::post('/reviews', [ProductDetailController::class, 'store']);
 });
 
 Route::post('/contact/send', [ContactController::class, 'store'])->name('contact.send');

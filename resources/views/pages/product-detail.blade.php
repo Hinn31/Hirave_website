@@ -68,27 +68,27 @@
                 <h3 class="review-title">Add a review</h3>
                 <p class="review-description">Your email address will not be published. Required fields are marked *</p>
 
-                <form class="review-form" method="POST" action="#">
+                <form id="reviewForm" class="review-form">
                     @csrf
-                    <textarea placeholder="Your review" required></textarea>
+                    <input type="hidden" id="product_id" name="product_id" value="{{ $product->id }}">
+                    <textarea id="comment" name="comment" placeholder="Your review" required></textarea>
+
                     <div class="review-form__row">
-                        <input type="text" name="name" placeholder="Name" required>
-                        <input type="email" name="email" placeholder="Email" required>
+                        <input type="text" name="name" placeholder="Name" required id="name">
+                        <input type="email" name="email" placeholder="Email" required id="email">
                     </div>
                     <button type="submit" class="btn btn-submit">Submit</button>
                 </form>
+
+                <p id="reviewMessage" style="margin-top: 10px; color: green;"></p>
+
             </div>
         </div>
     </div>
     <div class="related-products">
         <h2 class="related-title">Related products</h2>
         <div class="related-list">
-            @foreach ($relatedProducts as $related)
-                <div class="related-item" data-id="{{ $related->id }}">
-                    <img src="{{ asset('images/products/' . $related->imageURL) }}" alt="{{ $related->productName }}">
-                    <span class="hot-badge">HOT</span>
-                </div>
-            @endforeach
+            @include('components.product-card-mini', ['products' => $relatedProducts])
         </div>
     </div>
 </div>
