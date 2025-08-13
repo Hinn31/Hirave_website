@@ -1,39 +1,25 @@
 document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById('updateProfileForm');
-    const avatarInput = document.getElementById('avatarInput'); // đổi id cho thống nhất
+    const avatarInput = document.getElementById('avatarInput');
     const avatarPreview = document.getElementById('avatarPreview');
     const usernameEl = document.getElementById('username');
     const fullnameEl = document.getElementById('fullname');
     const emailEl = document.getElementById('email');
     const displayNameEl = document.getElementById('displayName');
+    const btnLogout = document.getElementById('btnLogout');
 
-    // Click icon edit để chọn ảnh mới
-    document.querySelector('.avatar-edit-btn')?.addEventListener('click', () => {
-        avatarInput.value = '';
-        avatarInput.click();
+    // Preview avatar khi chọn ảnh mới
+    avatarInput.addEventListener('change', () => {
+        if (avatarInput.files.length === 0) return;
+        avatarPreview.src = URL.createObjectURL(avatarInput.files[0]);
+        avatarInput.value = ''; // reset để có thể chọn lại file cũ
     });
 
-    // Preview ảnh khi chọn
-    avatarInput?.addEventListener('change', () => {
-        const file = avatarInput.files[0];
-        if (file) {
-            avatarPreview.src = URL.createObjectURL(file);
-        }
-    });
-
-    // Submit form update profile
-    form?.addEventListener('submit', async (e) => {
+    // Submit cập nhật profile
+    form.addEventListener('submit', async (e) => {
         e.preventDefault();
         const userId = form.dataset.userId;
-        const formData = new FormData();
-
-        formData.append('username', usernameEl.value.trim());
-        formData.append('fullname', fullnameEl.value.trim());
-        formData.append('email', emailEl.value.trim());
-
-        if (avatarInput.files[0]) {
-            formData.append('avatar', avatarInput.files[0]);
-        }
+        const formData = new FormData(form);
 
         try {
             const response = await fetch(`/users/${userId}`, {
@@ -46,8 +32,6 @@ document.addEventListener('DOMContentLoaded', () => {
             });
 
             const result = await response.json();
-            console.log('Response:', response);
-            console.log('Result:', result);
 
             if (response.ok) {
                 const { user, avatar_url } = result;
@@ -64,12 +48,46 @@ document.addEventListener('DOMContentLoaded', () => {
                 alert('Cập nhật thành công!');
             } else {
                 const errorMsg = result.errors ?? result.message ?? 'Unknown error';
-                console.error(errorMsg);
                 alert('Lỗi: ' + JSON.stringify(errorMsg));
             }
         } catch (err) {
-            console.error('Error:', err);
             alert('Có lỗi xảy ra, vui lòng thử lại!');
+            console.error(err);
         }
     });
+
+    // Logout API
+    async function logoutApi() {
+        const token = localStorage.getItem('token');
+        if (!token) {
+            alert('Bạn chưa đăng nhập hoặc token không tồn tại');
+            return;
+        }
+
+        try {
+            const response = await fetch('/api/logout', {
+                method: 'POST',
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                    'Accept': 'application/json',
+                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                }
+            });
+
+            const data = await response.json();
+            if (response.ok) {
+                localStorage.removeItem('token');
+                alert(data.message);
+                window.location.href = '/login';
+            } else {
+                alert('Logout thất bại: ' + (data.message || 'Unknown error'));
+            }
+        } catch (error) {
+            alert('Có lỗi xảy ra khi logout!');
+            console.error(error);
+        }
+    }
+
+    // Gán sự kiện logout cho nút
+    btnLogout.addEventListener('click', logoutApi);
 });

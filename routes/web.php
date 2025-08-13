@@ -89,20 +89,20 @@ Route::get('/payment', function(){
     return view('pages.payment');
 });
 
-Route::get('/data', function () {
-    dd(env('DB_CONNECTION'));
-});
-
-
-Route::middleware('auth')->get('/test-auth', function () {
-    return 'Bạn đã đăng nhập web!';
-});
-
 Route::get('/cart', function () {
     return view('pages.cart');
-})->name('cart.page');  // <-- sửa thành cart.page đúng với tên bạn gọi trong view
+})->name('cart.page');  
 
 // About Us
 Route::get('/about', function() {
     return view('pages.about-us');
 });
+
+Route::get('/contact', function () {
+    return view('pages.contacts');
+})->name('contacts');
+
+
+Route::get('/successs_one', function () {
+    return view('components.success_one');
+})->name('component.success_one');
