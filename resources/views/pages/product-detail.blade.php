@@ -6,12 +6,16 @@
 
 <div class="back-button" style="margin-bottom: 20px;">
     <a href="{{ route('product.page') }}" class="btn btn-back" style="text-decoration: none; color: #333;">
-        <i class="fas fa-arrow-left"></i> 
+        <i class="fas fa-arrow-left"></i>
     </a>
 </div>
 <div class="product-detail" data-product-id="{{ $product->id }}">
     <div class="product-detail__top">
         <div class="product-detail__image">
+<<<<<<< HEAD
+            <img src="{{ asset($product->imageURL) }}" alt="Image">
+=======
+>>>>>>> 57f90e3fb06d35415de11faedf2ccf985dbcb4e5
             <img src="{{ asset('images/products/' . $product->imageURL) }}" alt="{{ $product->productName }}">
         </div>
         <div class="product-detail__info">

@@ -93,6 +93,10 @@ Route::get('/cart', function () {
     return view('pages.cart');
 })->name('cart.page');  
 
+// About Us
+Route::get('/about', function() {
+    return view('pages.about-us');
+});
 
 Route::get('/contact', function () {
     return view('pages.contacts');

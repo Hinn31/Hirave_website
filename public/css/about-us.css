@@ -1,0 +1,83 @@
+.about-section {
+    display: flex;
+    flex-direction: column;
+    row-gap: 30px;
+    max-width: 1200px;
+    margin: auto;
+}
+
+.about-intro,
+.about-core-values {
+    display: flex;
+    align-items: stretch;
+}
+
+.about-image{
+    width: 500px;
+    height: 530px;
+}
+
+.core-img {
+    width: 600px;
+    height: 530px;
+}
+
+.about-image img,
+.core-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.hivera-description, .core-text li {
+    font-size: 25px;
+}
+
+.about-text {
+    flex: 1;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+}
+
+.core-text {
+    flex: 1;
+    padding: 40px 75px;
+    display: flex;
+    flex-direction: column;
+}
+
+.about-intro .about-text {
+    background-color: #d9d9d9;
+}
+
+.about-core-values .core-text {
+    background-color: #fff;
+}
+
+.about-text h2,
+.core-text h3 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    font-size: 40px;
+    margin-bottom: 15px;
+}
+
+.core-text ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    font-size: 16px;
+    line-height: 1.8;
+    display: flex;
+    flex-direction: column;
+    gap: 20px
+}
+
+.about-bottom-img img {
+    width: 100%;
+    height: 700px;
+    display: block;
+}
