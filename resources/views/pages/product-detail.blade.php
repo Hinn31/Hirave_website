@@ -12,6 +12,10 @@
 <div class="product-detail" data-product-id="{{ $product->id }}">
     <div class="product-detail__top">
         <div class="product-detail__image">
+<<<<<<< HEAD
+            <img src="{{ asset($product->imageURL) }}" alt="Image">
+=======
+>>>>>>> 57f90e3fb06d35415de11faedf2ccf985dbcb4e5
             <img src="{{ asset('images/products/' . $product->imageURL) }}" alt="{{ $product->productName }}">
         </div>
         <div class="product-detail__info">
