@@ -12,10 +12,6 @@
 <div class="product-detail" data-product-id="{{ $product->id }}">
     <div class="product-detail__top">
         <div class="product-detail__image">
-<<<<<<< HEAD
-            <img src="{{ asset($product->imageURL) }}" alt="Image">
-=======
->>>>>>> 57f90e3fb06d35415de11faedf2ccf985dbcb4e5
             <img src="{{ asset('images/products/' . $product->imageURL) }}" alt="{{ $product->productName }}">
         </div>
         <div class="product-detail__info">
@@ -73,10 +69,6 @@
                     <input type="hidden" id="product_id" name="product_id" value="{{ $product->id }}">
                     <textarea id="comment" name="comment" placeholder="Your review" required></textarea>
 
-                    <div class="review-form__row">
-                        <input type="text" name="name" placeholder="Name" required id="name">
-                        <input type="email" name="email" placeholder="Email" required id="email">
-                    </div>
                     <button type="submit" class="btn btn-submit">Submit</button>
                 </form>
 

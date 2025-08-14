@@ -6,19 +6,42 @@ document.addEventListener('DOMContentLoaded', () => {
     const fullnameEl = document.getElementById('fullname');
     const emailEl = document.getElementById('email');
     const displayNameEl = document.getElementById('displayName');
-    const btnLogout = document.getElementById('btnLogout');
 
-    // Preview avatar khi chọn ảnh mới
-    avatarInput.addEventListener('change', () => {
-        if (avatarInput.files.length === 0) return;
-        avatarPreview.src = URL.createObjectURL(avatarInput.files[0]);
-        avatarInput.value = ''; // reset để có thể chọn lại file cũ
+    const userId = form.dataset.userId;
+
+    avatarInput.addEventListener('change', async () => {
+        if (avatarInput.files.length > 0) {
+            const file = avatarInput.files[0];
+            avatarPreview.src = URL.createObjectURL(file); 
+            const formData = new FormData();
+            formData.append('avatar', file);
+
+            try {
+                const response = await fetch(`/users/${userId}`, {
+                    method: 'POST',
+                    headers: {
+                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                    },
+                    body: formData
+                });
+
+                const result = await response.json();
+
+                if (response.ok && result.avatar_url) {
+                    avatarPreview.src = result.avatar_url + '?t=' + new Date().getTime();
+                } else {
+                    const errorMsg = result.errors ?? result.message ?? 'Unknown error';
+                    alert('Lỗi khi cập nhật avatar: ' + JSON.stringify(errorMsg));
+                }
+            } catch (err) {
+                alert('Có lỗi xảy ra khi upload avatar!');
+                console.error(err);
+            }
+        }
     });
 
-    // Submit cập nhật profile
     form.addEventListener('submit', async (e) => {
         e.preventDefault();
-        const userId = form.dataset.userId;
         const formData = new FormData(form);
 
         try {
@@ -34,18 +57,12 @@ document.addEventListener('DOMContentLoaded', () => {
             const result = await response.json();
 
             if (response.ok) {
-                const { user, avatar_url } = result;
-
+                const { user } = result;
                 usernameEl.value = user.username;
                 fullnameEl.value = user.fullname;
                 emailEl.value = user.email;
                 displayNameEl.innerHTML = `${user.fullname} <span>(${user.username})</span>`;
-
-                if (avatar_url) {
-                    avatarPreview.src = avatar_url;
-                }
-
-                alert('Cập nhật thành công!');
+                alert('Cập nhật thông tin thành công!');
             } else {
                 const errorMsg = result.errors ?? result.message ?? 'Unknown error';
                 alert('Lỗi: ' + JSON.stringify(errorMsg));
