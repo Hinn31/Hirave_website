@@ -19,7 +19,9 @@
 
             <div class="profile-info">
                 <div class="profile-avatar">
-                    <img id="avatarPreview" src="{{ asset($user->avatar ?? 'images/avatars/default.jpg') }}" alt="Avatar">
+                  <img id="avatarPreview"
+                    src="{{ asset($user->avatar ?? 'images/avatars/default.jpg') }}?t={{ time() }}"
+                     alt="Avatar">
                     <label for="avatarInput" class="avatar-edit-btn" title="Change avatar">✎</label>
                     <input type="file" id="avatarInput" name="avatar" accept="image/*" style="display:none;">
                 </div>

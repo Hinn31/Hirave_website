@@ -68,67 +68,61 @@ class UserController extends Controller
     }
 
     // PUT/PATCH /api/users/{id}
-    public function update(Request $request, $id)
-    {
-        $user = User::find($id);
-
-        if (!$user) {
-            return response()->json(['message' => 'User not found'], 404);
-        }
-
-        $validator = Validator::make($request->all(), [
-            'fullname'       => 'nullable|string|max:50',
-            'date_of_birth'  => 'nullable|date',
-            'phone'          => 'nullable|string|size:10',
-            'email'          => 'nullable|email|unique:users,email,' . $id,
-            'username'       => 'nullable|string|max:50|unique:users,username,' . $id,
-            'password'       => 'nullable|string|min:6',
-            'avatar'         => 'nullable',
-            'role'           => 'nullable|in:admin,customer'
-        ]);
-
-        if ($validator->fails()) {
-            return response()->json([
-                'message' => 'Validation failed',
-                'errors'  => $validator->errors()
-            ], 422);
-        }
-
-         // Nếu gửi dạng file, xử lý upload ảnh
-        if ($request->hasFile('avatar')) {
-            $file = $request->file('avatar');
-            $filename = time() . '_' . $file->getClientOriginalName();
-            $file->move(public_path('images/avatars'), $filename);
-            $user->avatar = 'images/avatars/' . $filename;
-        }
-
-        // Cập nhật dữ liệu
-        $user->fill([
-            'fullname'      => $request->fullname ?? $user->fullname,
-            'date_of_birth' => $request->date_of_birth ?? $user->date_of_birth,
-            'phone'         => $request->phone ?? $user->phone,
-            'email'         => $request->email ?? $user->email,
-            'username'      => $request->username ?? $user->username,
-            // 'avatar'        => $request->avatar ?? $user->avatar,
-            'role'          => $request->role ?? $user->role,
-        ]);
-
-        if ($request->filled('password')) {
-            $user->password = Hash::make($request->password);
-        }
-
-
-        if (!$user->save()) {
-            return response()->json(['message' => 'Failed to save user'], 500);
-        }
-        // $user->save();
-
-        return response()->json([
-            'message' => 'User updated successfully',
-            'user'    => $user,
-            'avatar_url'  => asset($user->avatar)
-        ]);
+public function update(Request $request, $id)
+{
+    $user = User::find($id);
+    if (!$user) {
+        return response()->json(['message' => 'User not found'], 404);
     }
+
+    $validator = Validator::make($request->all(), [
+        'fullname'       => 'nullable|string|max:50',
+        'date_of_birth'  => 'nullable|date',
+        'phone'          => 'nullable|string|size:10',
+        'email'          => 'nullable|email|unique:users,email,' . $id,
+        'username'       => 'nullable|string|max:50|unique:users,username,' . $id,
+        'password'       => 'nullable|string|min:6',
+        'avatar'         => 'nullable|image|max:2048',
+        'role'           => 'nullable|in:admin,customer'
+    ]);
+
+    if ($validator->fails()) {
+        return response()->json([
+            'message' => 'Validation failed',
+            'errors'  => $validator->errors()
+        ], 422);
+    }
+
+    // Nếu có file avatar mới
+    if ($request->hasFile('avatar')) {
+        $file = $request->file('avatar');
+        $filename = time() . '_' . $file->getClientOriginalName();
+        $file->move(public_path('images/avatars'), $filename);
+        $user->avatar = 'images/avatars/' . $filename; // cập nhật DB
+    }
+
+    // Cập nhật các trường khác
+    $user->fullname = $request->fullname ?? $user->fullname;
+    $user->date_of_birth = $request->date_of_birth ?? $user->date_of_birth;
+    $user->phone = $request->phone ?? $user->phone;
+    $user->email = $request->email ?? $user->email;
+    $user->username = $request->username ?? $user->username;
+    $user->role = $request->role ?? $user->role;
+
+    if ($request->filled('password')) {
+        $user->password = Hash::make($request->password);
+    }
+
+    $user->save();
+
+    return response()->json([
+        'message' => 'User updated successfully',
+        'user'    => $user,
+        'avatar_url' => asset($user->avatar ?? 'images/avatars/default.jpg')
+    ]);
+}
+
+
 
     // DELETE /api/users/{id}
     public function destroy($id)

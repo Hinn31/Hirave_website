@@ -7,18 +7,13 @@
 @section('content')
 
 <div class="home-page">
-    {{-- Hero --}}
-    <div class="hero">
-        <div class="hero__content">
-            <h2 class="hero__title">Ring packs and matching sets</h2>
-            <p class="hero__subtitle">Now only - Limited time only</p>
-            <button class="hero__button">Shop Now</button>
-        </div>
-        <div class="hero__image">
-            <img src="https://afamilycdn.com/150157425591193600/2021/12/3/8aeaa038-813f-455e-a0c6-2dbba66ed205-16384373902831634886359-1638502651569-16385026516831865084947.jpeg" alt="Banner">
-        </div>
+    <div class="hero" style="background-image: url('{{ asset('images/abouts/banner_1.jpg') }}')">
+    <div class="hero__content">
+        <h1 class="hero__title">Welcome to Hivera Jewelry</h1>
+        <p class="hero__subtitle">Discover timeless elegance</p>
+        <button class="hero__button">Shop Now</button>
     </div>
-    {{-- service-highlights --}}
+</div>
     <div class="service-highlights">
         <div class="service__item">
             <i class="service__icon fa fa-truck"></i>
@@ -37,15 +32,15 @@
     <div class="carousel">
         <div class="slideshow-container">
             <div class="mySlides fade">
-                <img src="https://cdnmedia.baotintuc.vn/Upload/cVJiASFv9S8nriO7eNwA/files/2023/03/8-3/image005.jpg" alt="Slide 1">
+            <img src="{{asset('images/abouts/banner_2.jpg')}}" alt="Hivera Jewelry">        </div>
             </div>
 
             <div class="mySlides fade">
-                <img src="https://bacminhcanh.com/wp-content/uploads/2016/08/4-loi-su-dung-trang-suc-bac.jpg" alt="Slide 2">
+            <img src="{{asset('images/abouts/banner_3.jpg')}}" alt="Hivera Jewelry">        </div>
             </div>
 
             <div class="mySlides fade">
-                <img src="https://eropi.com/media/wysiwyg/bo-trang-suc-5/bo-trang-suc-bac-the-paper-fan_1_.JPG" alt="Slide 3">
+            <img src="{{asset('images/abouts/banner_4.jpg')}}" alt="Hivera Jewelry">        </div>
             </div>
 
             <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
