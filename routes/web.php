@@ -6,6 +6,7 @@ use App\Http\Controllers\Api\User\ProductController;
 use App\Http\Controllers\Api\User\ProductDetailController;
 use App\Http\Controllers\Api\User\UserController;
 use App\Http\Controllers\Web\ProductController2;
+use App\Http\Controllers\Api\User\ProductManagementController;
 
 // Home
 Route::get('/', function () {
@@ -72,4 +73,14 @@ Route::get('/successs_one', function () {
 // routes/web.php
 Route::get('/order_management', function () {
     return view('pages.order_management'); // trỏ đến file resources/views/test-ui.blade.php
+});
+
+Route::prefix('admin/products-management')->group(function () {
+    Route::get('/', [ProductManagementController::class, 'index'])->name('products-management.index');
+    Route::get('/create', [ProductManagementController::class, 'create'])->name('products-management.create');
+    Route::post('/', [ProductManagementController::class, 'store'])->name('products-management.store');
+    Route::get('/{id}/edit', [ProductManagementController::class, 'edit'])->name('products-management.edit');
+    Route::put('/{id}', [ProductManagementController::class, 'update'])->name('products-management.update');
+    Route::delete('/{id}', [ProductManagementController::class, 'destroy'])->name('products-management.destroy');
+    Route::get('/search', [ProductManagementController::class, 'search'])->name('products-management.search');
 });

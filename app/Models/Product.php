@@ -12,7 +12,7 @@ class Product extends Model
         'description',
         'price',
         'oldPrice',
-        'image',
+        'imageURL',
         'stock',
         'material',
         'categoryID',
