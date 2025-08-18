@@ -12,7 +12,7 @@ class ProductManagementController extends Controller
     //Hiển thị all sản phẩm
     public function index() {
         $products = Product::paginate(8);
-        return view('pages.products-management', compact('products'));
+        return view('pages.product-management', compact('products'));
     }
 
     // Thêm sản phẩm mới
@@ -47,7 +47,7 @@ class ProductManagementController extends Controller
         }
 
         Product::create($validated);
-        return redirect()->route('products-management.index')
+        return redirect()->route('product-management.index')
             ->with('success', 'Add product successfully!');
 
     }
@@ -85,7 +85,7 @@ class ProductManagementController extends Controller
         }
 
             $product->update($validated);
-        return redirect()->route('products-management.index')
+        return redirect()->route('product-management.index')
             ->with('success', 'Product updated successfully!');
 
     }
@@ -96,7 +96,7 @@ class ProductManagementController extends Controller
         $product = Product::findOrFail($id);
         $product->delete();
 
-        return redirect()->route('products-management.index')
+        return redirect()->route('product-management.index')
             ->with('success', 'Product deleted successfully!');
     }
 

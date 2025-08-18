@@ -1,8 +1,8 @@
     @extends('layouts.master')
-    @section('title', 'Products Management')
+    @section('title', 'Product Management')
 
     @section('content')
-        <link rel="stylesheet" href="{{ asset('css/products-management.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/product-management.css') }}">
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <div class="products-management">
@@ -12,7 +12,7 @@
         <div class="main">
             <h2>Product management</h2>
             <div class="top-bar">
-                <a href="{{route('products-management.create')}}" ><button>Add Product</button></a>
+                <a href="{{route('product-management.create')}}" ><button>Add Product</button></a>
                 <div>
                     <input type="text" id="keyword" placeholder="Search Product">
                     <button type="button" onclick="searchProduct()">Search</button>
@@ -24,7 +24,7 @@
                 <thead>
                 <tr>
                     <th>ID</th>
-                    <th>Product Name</th>
+                    <th style="width: 200px">Product Name</th>
                     <th>Timestamp</th>
                     <th>Category</th>
                     <th>Quantity</th>
@@ -52,8 +52,8 @@
                                 @endif
                             </td>
                             <td class="actions">
-                                <a href="{{ route('products-management.edit', $product->id) }}"><button class="edit">Edit</button></a>
-                                <form action="{{ route('products-management.destroy', $product->id) }}" method="POST" style="display:inline">
+                                <a href="{{ route('product-management.edit', $product->id) }}"><button class="edit">Edit</button></a>
+                                <form action="{{ route('product-management.destroy', $product->id) }}" method="POST" style="display:inline">
                                     @csrf
                                     @method('DELETE')
                                     <button class="delete" onclick="return confirm('Are you sure?')">Delete</button>

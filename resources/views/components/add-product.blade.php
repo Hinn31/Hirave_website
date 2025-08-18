@@ -1,10 +1,10 @@
-<link rel="stylesheet" href="{{ asset('css/products-management.css') }}">
+<link rel="stylesheet" href="{{ asset('css/product-management.css') }}">
 <div class="product-form">
     <h3 id="form-title">{{ isset($product) ? 'Edit Product' : 'Add Product' }}</h3>
 
     <form
         id="productForm"
-        action="{{ isset($product) ? route('products-management.update', $product->id) : route('products-management.store') }}"
+        action="{{ isset($product) ? route('product-management.update', $product->id) : route('product-management.store') }}"
         method="POST"
         enctype="multipart/form-data"
     >
@@ -107,7 +107,7 @@
         <!-- Actions -->
         <div class="form-actions">
             <button type="submit" class="btn save" id="submitBtn">{{ isset($product) ? 'Update' : 'Save' }}</button>
-            <a href="{{ route('products-management.index') }}" class="btn cancel">Cancel</a>
+            <a href="{{ route('product-management.index') }}" class="btn cancel">Cancel</a>
         </div>
     </form>
 </div>
