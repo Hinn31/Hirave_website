@@ -84,3 +84,35 @@ Route::prefix('admin/product-management')->group(function () {
     Route::delete('/{id}', [ProductManagementController::class, 'destroy'])->name('product-management.destroy');
     Route::get('/search', [ProductManagementController::class, 'search'])->name('product-management.search');
 });
+Route::get('/messages_managements', function () {
+    $messages = [
+        (object)[
+            'id' => 1,
+            'first_name' => 'Võ Thị Thu Hiền',
+            'last_name' => 'Hiền31',
+            'phone' => '0876068001',
+            'email' => 'hien.vo26@student.passerellesnumeriques.org',
+            'message' => 'Xin chào shop'
+        ],
+        (object)[
+            'id' => 2,
+            'first_name' => 'Nguyễn Văn A',
+            'last_name' => 'An',
+            'phone' => '01-01-2000',
+            'email' => 'vana@example.com',
+            'message' => 'Tôi muốn hỏi thêm thông tin'
+        ],
+    ];
+
+    // chỉ gọi tới file messages_managements.blade.php
+return view('pages.messages_managements', compact('messages'));
+})->name('messages.index');
+
+
+Route::get('/users', function () {
+    return 'Trang quản lý User';
+})->name('users.index');
+
+Route::get('/orders', function () {
+    return 'Trang quản lý User';
+})->name('orders.index');
