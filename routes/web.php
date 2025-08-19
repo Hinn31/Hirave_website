@@ -7,6 +7,7 @@ use App\Http\Controllers\Api\User\ProductDetailController;
 use App\Http\Controllers\Api\User\UserController;
 use App\Http\Controllers\Web\ProductController2;
 use App\Http\Controllers\Api\User\ProductManagementController;
+use App\Http\Controllers\Api\User\UserManagementController;
 
 // Home
 Route::get('/', function () {
@@ -75,7 +76,7 @@ Route::get('/order_management', function () {
     return view('pages.order_management'); // trỏ đến file resources/views/test-ui.blade.php
 });
 
-Route::prefix('admin/product-management')->group(function () {
+Route::prefix('product-management')->group(function () {
     Route::get('/', [ProductManagementController::class, 'index'])->name('product-management.index');
     Route::get('/create', [ProductManagementController::class, 'create'])->name('product-management.create');
     Route::post('/', [ProductManagementController::class, 'store'])->name('product-management.store');
@@ -109,9 +110,14 @@ return view('pages.messages_managements', compact('messages'));
 })->name('messages.index');
 
 
-Route::get('/users', function () {
-    return 'Trang quản lý User';
-})->name('users.index');
+Route::prefix('users')->group(function () {
+    Route::get('/', [UserManagementController::class, 'index'])->name('users.index');
+    Route::get('/search', [UserManagementController::class, 'search'])->name('users.search');
+    Route::get('/{id}/edit', [UserManagementController::class, 'edit'])->name('users.edit');
+    Route::put('/{id}', [UserManagementController::class, 'update'])->name('users.update');
+    Route::post('/', [UserManagementController::class, 'store'])->name('users.store'); 
+    Route::delete('/{id}', [UserManagementController::class, 'destroy'])->name('users.destroy');
+});
 
 Route::get('/orders', function () {
     return 'Trang quản lý User';
