@@ -6,6 +6,7 @@ use App\Http\Controllers\Api\User\ProductController;
 use App\Http\Controllers\Api\User\ProductDetailController;
 use App\Http\Controllers\Api\User\UserController;
 use App\Http\Controllers\Web\ProductController2;
+use App\Http\Controllers\Api\User\ProductManagementController;
 
 // Home
 Route::get('/', function () {
@@ -74,6 +75,15 @@ Route::get('/order_management', function () {
     return view('pages.order_management'); // trỏ đến file resources/views/test-ui.blade.php
 });
 
+Route::prefix('admin/product-management')->group(function () {
+    Route::get('/', [ProductManagementController::class, 'index'])->name('product-management.index');
+    Route::get('/create', [ProductManagementController::class, 'create'])->name('product-management.create');
+    Route::post('/', [ProductManagementController::class, 'store'])->name('product-management.store');
+    Route::get('/{id}/edit', [ProductManagementController::class, 'edit'])->name('product-management.edit');
+    Route::put('/{id}', [ProductManagementController::class, 'update'])->name('product-management.update');
+    Route::delete('/{id}', [ProductManagementController::class, 'destroy'])->name('product-management.destroy');
+    Route::get('/search', [ProductManagementController::class, 'search'])->name('product-management.search');
+});
 Route::get('/messages_managements', function () {
     $messages = [
         (object)[
