@@ -53,7 +53,12 @@
     <!-- Sidebar -->
     <div class="sidebar">
         <a href="{{ route('dashboard') }}" class="{{ request()->routeIs('dashboard') ? 'active' : '' }}">DashBoard</a>
-        <a href="{{ route('products.index') }}" class="{{ request()->routeIs('products.*') ? 'active' : '' }}">Product Management</a>
+      <a href="{{ route('product-management.index') }}" 
+   class="{{ request()->routeIs('product-management.*') ? 'active' : '' }}">
+    Product Management
+</a>
+
+        
         <a href="{{ route('users.index') }}" class="{{ request()->routeIs('users.*') ? 'active' : '' }}">User management</a>
         <a href="{{ route('orders.index') }}" class="{{ request()->routeIs('orders.*') ? 'active' : '' }}">Order management</a>
         <a href="{{ route('messages.index') }}" class="{{ request()->routeIs('messages.*') ? 'active' : '' }}">Message management</a>
