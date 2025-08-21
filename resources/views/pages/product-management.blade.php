@@ -1,4 +1,4 @@
-    @extends('layouts.master')
+    @extends('layouts.admin')
     @section('title', 'Product Management')
 
     @section('content')
@@ -7,7 +7,6 @@
 
     <div class="products-management">
         <!-- Sidebar -->
-        @include('components.sidebar')
         <!-- Main content -->
         <div class="main">
             <h2>Product management</h2>

@@ -87,6 +87,8 @@ document.getElementById('contactForm').addEventListener('submit', async function
     } else {
         alert(data.message || "Something went wrong!");
     }
+    }); // ← Đóng ngoặc và dấu chấm phẩy
+
 </script>
 
 </div>
