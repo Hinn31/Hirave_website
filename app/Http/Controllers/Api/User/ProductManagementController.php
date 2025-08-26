@@ -107,4 +107,6 @@ class ProductManagementController extends Controller
         return response()->json($products);
     }
 
+    
+
 }
