@@ -6,6 +6,7 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <div class="products-management">
+        <!-- Sidebar -->
         <!-- Main content -->
         <div class="main">
             <h3>Product management</h3>

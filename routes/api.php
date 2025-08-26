@@ -10,7 +10,9 @@ use App\Http\Controllers\Api\User\CartController;
 use App\Http\Controllers\Api\User\ProductDetailController;
 use App\Http\Controllers\Api\User\ContactController;
 use App\Http\Controllers\Api\User\OrderController;
+use App\Http\Controllers\Api\MessageController;
 
+Route::resource('messages', MessageController::class);
 // Lấy danh sách đơn hàng
 Route::get('/orders', [OrderController::class, 'index']);
 

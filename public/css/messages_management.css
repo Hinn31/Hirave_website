@@ -1,0 +1,64 @@
+/* Style chung cho phần quản lý */
+h3 {
+    margin-bottom: 20px;
+    font-weight: bold;
+    color: #212529;
+    text-align: center;
+}
+
+/* Form tìm kiếm */
+form.d-flex input[type="text"] {
+    border-radius: 6px;
+    border: 1px solid #ced4da;
+    padding: 8px 12px;
+    font-size: 14px;
+}
+
+form.d-flex button {
+    background-color: #212529;
+    color: #fff;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    transition: background 0.3s;
+}
+
+form.d-flex button:hover {
+    background-color: #000;
+}
+
+.table {
+    border-collapse: collapse;
+    width: 100%;
+    font-size: 14px;
+    margin-top: 15px;
+    background: #fff;
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.table thead th {
+    background: #212529;  /* Đen */
+    color: #fff;          /* Chữ trắng */
+    text-align: center;
+    font-weight: bold;
+    padding: 12px 15px;
+}
+
+.table tbody td {
+    background: #fdfdfd;  
+    color: #212529;
+    padding: 12px 15px;
+    text-align: center;
+    border: 1px solid #dee2e6;
+}
+
+
+.table tbody tr:nth-child(even) td {
+    background-color: #f8f9fa; 
+}
+
+
+.table tbody tr:hover td {
+    background-color: #e9ecef;
+}
