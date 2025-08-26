@@ -1,0 +1,220 @@
+.user-management h3 {
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.top-bar {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 15px;
+    gap: 10px;
+}
+
+.top-bar input {
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    width: 250px;
+}
+
+.btn-search {
+    padding: 8px 14px;
+    background: #222;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.user-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    table-layout: fixed;
+}
+
+.user-table th,
+.user-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+    word-wrap: break-word;
+}
+
+.user-table th:nth-child(1),
+.user-table td:nth-child(1) {
+    width: 50px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.user-table th:nth-child(5),
+.user-table td:nth-child(5) {
+    width: 250px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.user-table th:nth-child(7),
+.user-table td:nth-child(7) {
+    width: 150px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.user-table th {
+    background: #222;
+    color: white;
+}
+
+.actions a {
+    text-decoration: none;
+}
+
+
+.pagination {
+    margin-top: 15px;
+    text-align: center;
+}
+
+.pagination span {
+    display: inline-block;
+    margin: 0 5px;
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.pagination .active {
+    background: #007bff;
+    color: white;
+    border-color: #007bff;
+}
+
+/* ========== FORM USER MANAGEMENT ========== */
+.user-form {
+    max-width: 700px;
+    margin: 30px auto;
+    padding: 25px 30px;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.user-form h3 {
+    font-size: 22px;
+    margin-bottom: 20px;
+    text-align: center;
+    font-weight: 600;
+}
+
+/* Form Group */
+.user-form {
+    background-color: #fff;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    max-width: 600px;
+    margin: 20px auto;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.user-form .form-group {
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+.user-form label {
+    margin-bottom: 6px;
+    font-size: 16px;
+}
+
+.user-form input,
+.user-form select {
+    padding: 10px 12px;
+    border: 1px solid #dcdcdc;
+    border-radius: 8px;
+    outline: none;
+    font-size: 14px;
+    transition: all 0.2s ease;
+}
+
+.user-form input:focus,
+.user-form select:focus {
+    border-color: #3498db;
+    box-shadow: 0 0 4px rgba(52,152,219,0.3);
+}
+
+.actions button {
+    border: none;
+    padding: 5px 10px;
+    border-radius: 3px;
+    cursor: pointer;
+    margin: 0 2px;
+}
+
+.actions .edit {
+    background-color: orange;
+    color: #fff;
+}
+
+.actions .delete {
+    background-color: red;
+    color: #fff;
+}
+
+/* Actions */
+.user-form .form-actions {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.user-form .btn {
+    padding: 10px 18px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 14px;
+    transition: background 0.2s ease, transform 0.1s ease;
+    text-decoration: none;
+    text-align: center;
+}
+
+.user-form .btn.save {
+    background: #27ae60;
+    color: #fff;
+}
+
+.user-form .btn.save:hover {
+    background: #219150;
+    transform: scale(1.02);
+}
+
+.user-form .btn.cancel {
+    background: #e74c3c;
+    color: #fff;
+}
+
+.user-form .btn.cancel:hover {
+    background: #c0392b;
+    transform: scale(1.02);
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .user-form {
+        padding: 20px;
+    }
+    .user-form .form-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+}

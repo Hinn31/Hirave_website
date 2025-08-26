@@ -1,40 +1,4 @@
-.products-management {
-    display: flex;
-    height: 140vh;
-}
-
-/* Sidebar */
-.sidebar {
-    width: 220px;
-    background-color: #111;
-    padding-top: 20px;
-}
-
-.sidebar a {
-    display: block;
-    padding: 12px 20px;
-    color: #fff;
-    text-decoration: none;
-    margin-bottom: 5px;
-    border: 1px solid #333;
-}
-
-.sidebar a.active {
-    background-color: #4c6a82;
-}
-
-.sidebar a:hover {
-    background-color: #333;
-}
-
-/* Main content */
-.main {
-    flex: 1;
-    background-color: #f3f3f3;
-    padding: 30px;
-}
-
-.main h2 {
+.main h3 {
     text-align: center;
     margin-bottom: 20px;
 }
@@ -87,10 +51,6 @@ table th, table td {
     border: 1px solid #ddd;
 }
 
-table th {
-    font-weight: normal;
-}
-
 .actions button {
     border: none;
     padding: 5px 10px;
@@ -136,7 +96,7 @@ table th {
 }
 
 
-    /* Add product */
+/* Add product */
 .product-form {
     background-color: #fff;
     padding: 25px;
@@ -148,6 +108,7 @@ table th {
 }
 
 .product-form h3 {
+    font-size: 22px;
     margin-bottom: 20px;
     text-align: center;
     color: #333;
@@ -195,6 +156,8 @@ table th {
     border-radius: 6px;
     cursor: pointer;
     font-size: 14px;
+    font-weight: 600;
+    transition: background 0.2s ease, transform 0.1s ease;
 }
 
 .form-actions .save {
@@ -202,8 +165,18 @@ table th {
     color: #fff;
 }
 
+.form-actions .btn.save:hover {
+    background: #219150;
+    transform: scale(1.02);
+}
+
 .form-actions .cancel {
-    background-color: #ccc;
-    color: #333;
+    background-color: #e74c3c;
+    color: #fff;
     text-decoration: none;
+}
+
+.form-actions .btn.cancel:hover {
+    background: #c0392b;
+    transform: scale(1.02);
 }
