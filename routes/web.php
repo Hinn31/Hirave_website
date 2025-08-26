@@ -7,7 +7,7 @@ use App\Http\Controllers\Api\User\ProductDetailController;
 use App\Http\Controllers\Api\User\UserController;
 use App\Http\Controllers\Web\ProductController2;
 use App\Http\Controllers\Api\User\ProductManagementController;
-
+use App\Http\Controllers\Api\OrderManagementAdminController;
 use App\Http\Controllers\Api\MessageController;
 
 Route::resource('messages', MessageController::class);
@@ -98,6 +98,7 @@ Route::get('/users', function () {
     return 'Trang quản lý User';
 })->name('users.index');
 
-Route::get('/orders', function () {
-    return 'Trang quản lý User';
-})->name('orders.index');
+
+Route::get('/orders', [OrderManagementAdminController::class, 'index'])->name('orders.index');
+Route::get('/orders/{id}', [OrderManagementAdminController::class, 'show'])->name('orders.show');
+Route::delete('/orders/{id}', [OrderManagementAdminController::class, 'destroy'])->name('orders.destroy');

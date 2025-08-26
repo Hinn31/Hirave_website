@@ -53,13 +53,17 @@
         </div>
     </div>
 
-    <div class="hot-products">
-        <h2 class="hot-products__title">Hot Product</h2>
-        <div class="hot-products__list">
-            @include('components.product-card-mini', ['products' => $products])
-        </div>
+ <div class="hot-products">
+    <h2 class="hot-products__title">Hot Product</h2>
+    <div class="hot-products__list">
+            @foreach($categories as $category)
+                @include('components.category-card', [
+                    'name' => $category->categoryName,
+                    'image' => asset('images/category/' . $category->image)
+                ])
+            @endforeach
     </div>
-
+</div>
 </div>
 <script src="{{ asset('js/carousel.js') }}"></script>
 @endsection
