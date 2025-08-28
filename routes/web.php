@@ -9,6 +9,7 @@ use App\Http\Controllers\Web\ProductController2;
 use App\Http\Controllers\Api\User\ProductManagementController;
 use App\Http\Controllers\Api\OrderManagementAdminController;
 use App\Http\Controllers\Api\User\UserManagementController;
+use App\Http\Controllers\Api\User\PaymentController;
 use App\Http\Controllers\Api\MessageController;
 
 Route::resource('messages', MessageController::class);
@@ -94,17 +95,16 @@ Route::prefix('product-management')->group(function () {
 Route::get('/messages_managements', [MessageController::class, 'index'])->name('messages.index');
 Route::delete('/messages_managements/{id}', [MessageController::class, 'destroy'])->name('messages.destroy');
 
-
 Route::prefix('users')->group(function () {
     Route::get('/', [UserManagementController::class, 'index'])->name('users.index');
     Route::get('/search', [UserManagementController::class, 'search'])->name('users.search');
     Route::get('/{id}/edit', [UserManagementController::class, 'edit'])->name('users.edit');
     Route::put('/{id}', [UserManagementController::class, 'update'])->name('users.update');
-    Route::post('/', [UserManagementController::class, 'store'])->name('users.store'); 
+    Route::post('/', [UserManagementController::class, 'store'])->name('users.store');
     Route::delete('/{id}', [UserManagementController::class, 'destroy'])->name('users.destroy');
 });
 
+Route::get('/orders', function () {
+    return 'Trang quản lý User';
+})->name('orders.index');
 
-Route::get('/orders', [OrderManagementAdminController::class, 'index'])->name('orders.index');
-Route::get('/orders/{id}', [OrderManagementAdminController::class, 'show'])->name('orders.show');
-Route::delete('/orders/{id}', [OrderManagementAdminController::class, 'destroy'])->name('orders.destroy');

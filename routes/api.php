@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Models\Cart;
 use App\Models\User;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\User\ProductController;
@@ -11,6 +12,7 @@ use App\Http\Controllers\Api\User\ProductDetailController;
 use App\Http\Controllers\Api\User\ContactController;
 use App\Http\Controllers\Api\User\OrderController;
 use App\Http\Controllers\Api\MessageController;
+use App\Http\Controllers\Api\User\PaymentController;
 
 Route::resource('messages', MessageController::class);
 // Lấy danh sách đơn hàng
@@ -59,3 +61,10 @@ Route::middleware('auth:sanctum')->group(function () {
 // Contact
 Route::post('/contact/send', [ContactController::class, 'store'])->name('contact.send');
 
+//api/Payment
+Route::middleware('auth:sanctum')->group(function() {
+    Route::get('/payment-data', [PaymentController::class, 'getPaymentData']);
+    Route::post('/payment', [PaymentController::class, 'store']);
+});
+// IPN không cần auth
+Route::post('/payment/momo/ipn', [PaymentController::class, 'momoIpn'])->name('momo.ipn');

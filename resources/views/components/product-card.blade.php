@@ -6,7 +6,7 @@
     <div class="product-card">
         <a href="{{ url('/product/' . $product->id) }}" class="product-link">
             <div class="product-image">
-                <img src="{{ asset('images/products/' . $product->imageURL) }}" alt="{{ $product->productName }}">
+                <img src="{{ asset( $product->imageURL) }}" alt="{{ $product->productName }}">
 
                 @if ($product->is_best_seller)
                     <div class="product-badge">Hot</div>
@@ -21,9 +21,9 @@
                 <h4 class="product-name">{{ $product->productName }}</h4>
 
                 <div class="product-price">
-                    <span class="price-sale">${{ number_format($product->price, 2) }}</span>
+                    <span class="price-sale">{{ number_format($product->price, 3) }} VND</span>
                     @if ($product->oldPrice)
-                        <span class="price-original">${{ number_format($product->oldPrice, 2) }}</span>
+                        <span class="price-original">{{ number_format($product->oldPrice, 3) }} VND</span>
                     @endif
                 </div>
             </div>
