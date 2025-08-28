@@ -3,10 +3,9 @@
 
 @foreach ($products as $product)
     <div class="product-card-mini" data-id="{{ $product->id }}" id="product-card-mini">
-     <img src="{{ asset('images/products/' . $product->imageURL) }}" 
-     alt="{{ $product->name }}" 
+     <img src="{{ asset( $product->imageURL) }}"
+     alt="{{ $product->name }}"
      class="product-card__image">
     </div>
 @endforeach
 
-  

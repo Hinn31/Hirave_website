@@ -95,10 +95,14 @@ Route::prefix('product-management')->group(function () {
 Route::get('/messages_managements', [MessageController::class, 'index'])->name('messages.index');
 Route::delete('/messages_managements/{id}', [MessageController::class, 'destroy'])->name('messages.destroy');
 
-
-Route::get('/users', function () {
-    return 'Trang quản lý User';
-})->name('users.index');
+Route::prefix('users')->group(function () {
+    Route::get('/', [UserManagementController::class, 'index'])->name('users.index');
+    Route::get('/search', [UserManagementController::class, 'search'])->name('users.search');
+    Route::get('/{id}/edit', [UserManagementController::class, 'edit'])->name('users.edit');
+    Route::put('/{id}', [UserManagementController::class, 'update'])->name('users.update');
+    Route::post('/', [UserManagementController::class, 'store'])->name('users.store');
+    Route::delete('/{id}', [UserManagementController::class, 'destroy'])->name('users.destroy');
+});
 
 Route::get('/orders', function () {
     return 'Trang quản lý User';
