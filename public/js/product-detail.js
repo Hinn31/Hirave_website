@@ -44,8 +44,12 @@ document.addEventListener('DOMContentLoaded', function () {
 
     function updateTotalPrice() {
         const qty = parseInt(qtyInput.value) || 1;
-        const total = (unitPrice * qty).toFixed(2);
-        totalPriceEl.textContent = `$${total}`;
+        const total = (unitPrice * qty).toFixed(3);
+        totalPriceEl.textContent = total.toLocaleString('vi-VN', {
+            minimumFractionDigits: 3,
+            maximumFractionDigits: 3
+        }) + ' VND';
+
     }
 
     plusBtn.addEventListener('click', () => {
@@ -106,7 +110,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         if (!token) {
             alert('You are not logged in. Please log in to add a comment.');
-            window.location.href = '/login'; 
+            window.location.href = '/login';
             return;
         }
 

@@ -7,7 +7,7 @@ use App\Http\Controllers\Api\User\ProductDetailController;
 use App\Http\Controllers\Api\User\UserController;
 use App\Http\Controllers\Web\ProductController2;
 use App\Http\Controllers\Api\User\ProductManagementController;
-
+use App\Http\Controllers\Api\User\PaymentController;
 use App\Http\Controllers\Api\MessageController;
 
 Route::resource('messages', MessageController::class);
@@ -101,3 +101,10 @@ Route::get('/users', function () {
 Route::get('/orders', function () {
     return 'Trang quản lý User';
 })->name('orders.index');
+
+//web/payment
+Route::get('/payment', function () {
+    return view('pages.payment');
+})->name('payment.page');
+
+

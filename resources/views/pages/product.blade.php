@@ -26,7 +26,7 @@
             @foreach($categories as $category)
                 @include('components.category-card', [
                     'name' => $category->categoryName,
-                    'image' => asset('images/category/' . $category->image)
+                    'image' => asset( $category->image)
                 ])
             @endforeach
         </div>

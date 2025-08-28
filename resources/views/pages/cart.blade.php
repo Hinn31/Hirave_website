@@ -29,7 +29,7 @@
 <div class="cart-footer">
   Total payment: <span class="total-amount" id="total-payment">0</span> VND
   <button class="btn-continue" onclick="window.location.href='/'">Continue shopping</button>
-  <button class="btn-checkout" onclick="alert('Chưa có chức năng thanh toán')">Checkout</button>
+  <button class="btn-checkout" onclick="window.location.href='/payment'">Checkout</button>
 </div>
 
 <script>

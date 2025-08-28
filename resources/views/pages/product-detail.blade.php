@@ -12,13 +12,13 @@
 <div class="product-detail" data-product-id="{{ $product->id }}">
     <div class="product-detail__top">
         <div class="product-detail__image">
-            <img src="{{ asset('images/products/' . $product->imageURL) }}" alt="{{ $product->productName }}">
+            <img src="{{ asset($product->imageURL) }}" alt="{{ $product->productName }}">
         </div>
         <div class="product-detail__info">
             <h1 class="product-title">{{ $product->productName }}</h1>
             <div class="product-price">
-                <span class="product-price__current">${{ number_format($product->price, 2) }}</span>
-                <span class="product-price__original">${{ number_format($product->oldPrice,2) }}</span>
+                <span class="product-price__current">{{ number_format($product->price, 3) }} VND</span>
+                <span class="product-price__original">{{ number_format($product->oldPrice,3) }} VND</span>
             </div>
 
             <div class="product-stock">
@@ -38,7 +38,7 @@
             </div>
 
             <div class="product-total">
-                Total: <span id="totalPrice">${{ number_format($product->price, 2) }}</span>
+                Total: <span id="totalPrice">{{ number_format($product->price, 3) }} VND</span>
             </div>
         </div>
     </div>

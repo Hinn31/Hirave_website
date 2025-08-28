@@ -37,8 +37,8 @@ return new class extends Migration
        Schema::create('products', function (Blueprint $table) {
         $table->id();
         $table->string('productName', 100);
-        $table->decimal('price', 12, 2);
-        $table->decimal('oldPrice', 12, 2)->nullable();
+        $table->decimal('price', 12, 3);
+        $table->decimal('oldPrice', 12, 3)->nullable();
         $table->text('description')->nullable();
         $table->string('imageURL', 255)->nullable();
         $table->integer('stock')->default(0);
