@@ -77,12 +77,13 @@
             </div>
         </div>
     </div>
-    <div class="related-products">
-        <h2 class="related-title">Related products</h2>
-        <div class="related-list">
-            @include('components.product-card-mini', ['products' => $relatedProducts])
-        </div>
+   <div class="related-products">
+    <h2 class="related-title">Related products</h2>
+    <div class="related-list">
+        @include('components.product-card-mini', ['products' => $relatedProducts])
     </div>
+</div>
+
 </div>
 <script>
     const addToCartUrl = "{{ route('cart.add') }}";

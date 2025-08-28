@@ -10,9 +10,4 @@
         <input class="form-check-input" type="radio" name="payment_method" value="momo">
         <label class="form-check-label">Momo</label>
     </div>
-
-    <div class="payment__method-option">
-        <input class="form-check-input" type="radio" name="payment_method" value="vnpay">
-        <label class="form-check-label">VNPAY</label>
-    </div>
 </div>

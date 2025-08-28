@@ -115,10 +115,15 @@ public function search(Request $request)
     // Lấy sản phẩm best seller
     public function getBestSellers()
     {
-        $products = Product::where('is_best_seller', true)->get();
+         $categories = Category::all();
+        $Products = Product::all();
 
-        return view('pages.homepage', compact('products'));
+
+        return view('pages.homepage', compact('Products' ,'categories'));
     }
+
+
+    
 
 
 }

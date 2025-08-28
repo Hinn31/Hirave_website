@@ -7,6 +7,8 @@ use App\Http\Controllers\Api\User\ProductDetailController;
 use App\Http\Controllers\Api\User\UserController;
 use App\Http\Controllers\Web\ProductController2;
 use App\Http\Controllers\Api\User\ProductManagementController;
+use App\Http\Controllers\Api\OrderManagementAdminController;
+use App\Http\Controllers\Api\User\UserManagementController;
 use App\Http\Controllers\Api\User\PaymentController;
 use App\Http\Controllers\Api\MessageController;
 
@@ -79,7 +81,7 @@ Route::get('/order_management', function () {
     return view('pages.order_management'); // trỏ đến file resources/views/test-ui.blade.php
 });
 
-Route::prefix('admin/product-management')->group(function () {
+Route::prefix('product-management')->group(function () {
     Route::get('/', [ProductManagementController::class, 'index'])->name('product-management.index');
     Route::get('/create', [ProductManagementController::class, 'create'])->name('product-management.create');
     Route::post('/', [ProductManagementController::class, 'store'])->name('product-management.store');
@@ -101,10 +103,4 @@ Route::get('/users', function () {
 Route::get('/orders', function () {
     return 'Trang quản lý User';
 })->name('orders.index');
-
-//web/payment
-Route::get('/payment', function () {
-    return view('pages.payment');
-})->name('payment.page');
-
 

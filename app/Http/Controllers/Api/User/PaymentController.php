@@ -48,7 +48,7 @@ public function store(Request $request)
 
     if (!empty($selectedItems)) {
         $cartItems = $cartItems->filter(function ($item) use ($selectedItems) {
-            return in_array((string)$item->id, $selectedItems);
+            return in_array((string)$item->productID, $selectedItems);
         });
     }
 
@@ -81,7 +81,9 @@ public function store(Request $request)
                 ]);
             }
 
-            CartItem::where('cartID', $cart->id)->delete();
+            CartItem::where('cartID', $cart->id)
+                ->whereIn('productID', $selectedItems) // chỉ xóa sản phẩm đã chọn
+                ->delete();
             DB::commit();
 
             return response()->json([
@@ -201,7 +203,7 @@ public function momo_payment(Request $request, $totalAmount)
                 $cartItems = $cart->items;
                 if (!empty($selectedItems)) {
                     $cartItems = $cartItems->filter(function ($item) use ($selectedItems) {
-                        return in_array((string)$item->id, $selectedItems);
+                        return in_array((string)$item->productID, $selectedItems);
                     });
                 }
 

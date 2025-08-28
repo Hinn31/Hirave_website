@@ -40,8 +40,8 @@
 
         // Nếu có chọn thì lọc, nếu không thì lấy tất cả
         let items = cart?.items || [];
-        if (selectedItems.length > 0) {
-            items = items.filter(item => selectedItems.includes(String(item.id)));
+        if (cart.items && selectedItems.length > 0) {
+            cart.items = cart.items.filter(item => selectedItems.includes(String(item.product.id)));
         }
 
         const scroll = document.createElement('div');
@@ -122,7 +122,7 @@
             return res.json();
         })
         .then(data => {
-            console.log("Dữ liệu API trả về:", data); 
+            console.log("Dữ liệu API trả về:", data);
             // Fill form user info
             const user = data.user || {};
             document.getElementById('name').value    = user.fullname || '';
@@ -130,8 +130,21 @@
             document.getElementById('city').value    = user.city || '';
             document.getElementById('address').value = user.address || '';
 
-            // Render cart summary
-            renderOrderSummary(data.cart);
+            // Lấy selectedCartItems từ localStorage
+            let selectedItems = [];
+            try {
+                selectedItems = JSON.parse(localStorage.getItem('selectedCartItems')) || [];
+            } catch (e) {
+                selectedItems = [];
+            }
+
+            // Lọc giỏ hàng theo selectedItems
+            let cart = data.cart || {};
+            if (cart.items && selectedItems.length > 0) {
+                cart.items = cart.items.filter(item => selectedItems.includes(String(item.product.id)));
+            }
+
+            renderOrderSummary(cart);
             disableSubmit(false);
         })
         .catch(err => {
